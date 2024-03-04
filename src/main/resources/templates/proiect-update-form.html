@@ -2,32 +2,63 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
 <head>
   <meta charset="UTF-8">
-  <title>Forma Editare Proiect</title>
+  <title>Forma Adaugare Proiect</title>
   <link rel="stylesheet" th:href="@{/forms.css}" />
 </head>
-<body>
+<body style="overflow-y:scroll;">
 <div class="form-body" layout:fragment="content" >
   <div class="row">
     <div class="form-holder">
       <div class="form-content">
         <div class="form-items">
-          <h3>Editare Proiect</h3>
-          <p>Editati datele necesare</p>
+          <h3>Adaugare Proiect</h3>
+          <p>Adaugati datele necesare</p>
           <form class="requires-validation" id="myForm" action="#" th:action="@{/save_proiect}" th:object="${proiect}" method="post" style="margin-right: 40px;">
             <div>
               <input class="form-control" type="hidden"  id="id" placeholder="Id" th:field="*{id}">
             </div>
             <div class="col-md-12">
-              <input class="form-control" type="date"  id="data" placeholder="YY-MM" th:field="*{data}" required>
+              <h1>Data CODE</h1>
+              <input class="form-control" type="date"  id="dataCODE" placeholder="YY-MM" th:field="*{dataCODE}" required>
             </div>
             <div class="col-md-12">
-              <input class="form-control" type="text"  id="nume" placeholder="Nume" th:field="*{nume}" required>
+              <h1>Data Livrare</h1>
+              <input class="form-control" type="date"  id="dataLivrare" placeholder="YY-MM" th:field="*{dataLivrare}" required>
+            </div>
+            <div class="col-md-12">
+              <h1>Data Plecare</h1>
+              <input class="form-control" type="date"  id="dataPlecare" placeholder="YY-MM" th:field="*{dataPlecare}" required>
+            </div>
+            <div class="col-md-12">
+              <h1>Data Factura</h1>
+              <input class="form-control" type="date"  id="dataFactura" placeholder="YY-MM" th:field="*{dataFactura}" required>
             </div>
             <div class="col-md-12">
               <input class="form-control" type="text"  id="client" placeholder="Client" th:field="*{client}" required>
             </div>
             <div class="col-md-12">
-              <input class="form-control" type="text"  id="nrComanda" placeholder="Nr. De Comanda" th:field="*{nrComanda}" required>
+              <input class="form-control" type="text"  id="nrComandaInt" placeholder="Nr. De Comanda Int." th:field="*{nrComandaInt}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="nrComandaClient" placeholder="Nr. De Comanda Int." th:field="*{nrComandaClient}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="Adresa Livrare" placeholder="Adresa Livrare" th:field="*{adresaLivrare}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="transportator" placeholder="Transportator" th:field="*{transportator}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="number"  id="greutate" placeholder="Greutate" th:field="*{greutate}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="number"  id="valoareFactura" placeholder="Valoare Factura" th:field="*{valoareFactura}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="number"  id="valoareFacturata" placeholder="Valoare Facturata" th:field="*{valoareFacturata}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="nrFactura" placeholder="nrFactura" th:field="*{nrFactura}" required>
             </div>
             <div class="form-button mt-3" >
               <button id="submit" type="submit" class="button"style="margin-left: 50px;">Send</button>

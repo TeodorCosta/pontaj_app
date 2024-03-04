@@ -23,7 +23,7 @@ public class ProiectService {
     }
 
     public List<Proiect> findProiect(String searchItem1, String searchItem2, LocalDate searchItem3, String searchItem4) {
-        return proiectRepository.findAllByNumeContainingIgnoreCaseOrClientContainingIgnoreCaseOrDataOrNrComandaContainingIgnoreCase(searchItem1, searchItem2, searchItem3, searchItem4);
+        return proiectRepository.findAllByNrComandaIntContainingIgnoreCaseOrClientContainingIgnoreCaseOrDataCODEOrNrComandaClientContainingIgnoreCase(searchItem1, searchItem2, searchItem3, searchItem4);
     }
 
     public List<Proiect> findProiectByMonth(int month){

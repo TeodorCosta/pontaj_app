@@ -12,8 +12,8 @@ import java.util.UUID;
 @Repository
 public interface ProiectRepository extends JpaRepository<Proiect,UUID>{
 
-    List<Proiect> findAllByNumeContainingIgnoreCaseOrClientContainingIgnoreCaseOrDataOrNrComandaContainingIgnoreCase(String searchItem1, String searchItem2, LocalDate searchItem3, String searchItem4);
+    List<Proiect> findAllByNrComandaIntContainingIgnoreCaseOrClientContainingIgnoreCaseOrDataCODEOrNrComandaClientContainingIgnoreCase(String searchItem1, String searchItem2, LocalDate searchItem3, String searchItem4);
 
-    @Query(value = "SELECT p FROM Proiect p WHERE MONTH(p.data) = :month")
+    @Query(value = "SELECT p FROM Proiect p WHERE MONTH(p.dataCODE) = :month")
     List<Proiect> findAllByMonth(int month);
 }

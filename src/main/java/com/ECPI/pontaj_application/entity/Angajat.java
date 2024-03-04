@@ -25,6 +25,7 @@ public class Angajat {
 
     @OneToMany(mappedBy = "angajat", cascade = CascadeType.ALL)
     private List<TimpProiect> proiecte;
+    //test
 
     public void addToProiect(TimpProiect timpProiect){
         this.proiecte.add(timpProiect);

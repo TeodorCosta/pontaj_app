@@ -19,21 +19,54 @@ public class Proiect {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String nume;
     private String client;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private LocalDate data;
 
 
     @OneToMany(mappedBy = "proiect")
     private List<TimpProiect> angajati;
 
-    private String nrComanda;
+    private String nrComandaInt;
+    private String nrComandaClient;
+    private Float valoareFactura;
+    private Float valoareFacturata;
+    private Float greutate;
+    private String transportator;
+    private String adresaLivrare;
 
 
-    public String getYearAndMonthAndDay(){
-        return String.valueOf(this.data.getYear()) + "-" + String.valueOf(this.data.getMonth()) + "-" + String.valueOf(this.data.getDayOfMonth());
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private LocalDate dataCODE;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private LocalDate dataLivrare;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private LocalDate dataPlecare;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private LocalDate dataFactura;
+
+    private  String nrFactura;
+
+
+
+
+    public String getYearAndMonthAndDayDataFactura(){
+        return String.valueOf(this.dataFactura.getYear()) + "-" + String.valueOf(this.dataFactura.getMonth()) + "-" + String.valueOf(this.dataFactura.getDayOfMonth());
+    }
+
+    public String getYearAndMonthAndDayDataPlecare(){
+        return String.valueOf(this.dataPlecare.getYear()) + "-" + String.valueOf(this.dataPlecare.getMonth()) + "-" + String.valueOf(this.dataPlecare.getDayOfMonth());
+    }
+    public String getYearAndMonthAndDayDataLivrare(){
+        return String.valueOf(this.dataLivrare.getYear()) + "-" + String.valueOf(this.dataLivrare.getMonth()) + "-" + String.valueOf(this.dataLivrare.getDayOfMonth());
+    }
+
+    public String getYearAndMonthAndDayDataCODE(){
+        return String.valueOf(this.dataCODE.getYear()) + "-" + String.valueOf(this.dataCODE.getMonth()) + "-" + String.valueOf(this.dataCODE.getDayOfMonth());
     }
 }

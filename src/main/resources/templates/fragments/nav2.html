@@ -8,21 +8,23 @@
 </head>
 <body>
     <header th:fragment="header">
+        <div style="z-index:4;">
         <nav role="navigation" class="primary-navigation">
             <ul>
               <li><a th:href="@{/home}">Home</a></li>
               <li><a href="#">Pontaj &dtrif;</a>
-                <ul class="dropdown">
-                  <li><a th:href="@{/angajati}">Angajati</a></li>
-                  <li><a th:href="@{/proiecte}">Proiecte</a></li>
-                  <li><a th:href="@{/adauga-angajat-pe-proiect}">Adauga Ore</a></li>
-                  <li><a th:href="@{/tabel}">Raport</a></li>
+                <ul class="dropdown" style="z-index:4;">
+                  <li style="z-index:4;"><a th:href="@{/angajati}" class="dropdown">Angajati</a></li>
+                  <li style="z-index:4;"><a th:href="@{/proiecte}" class="dropdown">Proiecte</a></li>
+                  <li style="z-index:4;"><a th:href="@{/adauga-angajat-pe-proiect}" class="dropdown">Adauga Ore</a></li>
+                  <li style="z-index:4;"><a th:href="@{/tabel}" class="dropdown">Raport</a></li>
                 </ul>
               </li>
               <li><a th:href="@{/about}">About</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </nav>
+        </div>
 </header>
 </body>
 </html>

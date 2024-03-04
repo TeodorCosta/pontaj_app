@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Angajati</title>
     <link rel="stylesheet" th:href="@{/list.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css">
     <script src="https://kit.fontawesome.com/d7ca018e94.js" crossorigin="anonymous"></script>
 
 </head>
@@ -52,10 +53,10 @@
                             <div>
                                 <a  style='font-size:24px; padding-bottom:10px;'
                                    class='fas'>&#xf044;</a>
-                                <a class='fas'>&#xf0c4;</a>
+                                <a th:href="|/deleteTimpProiect/${timpProiect.id}|"class='fas'>&#xf0c4;</a>
                             </div>
                             <h class="viz_b">Proiect:</h>
-                            <div class="viz_b" th:text="${timpProiect.proiect.nume}"/>
+                            <div class="viz_b" th:text="${timpProiect.proiect.nrComandaInt}"/>
 
                             <h class="viz_b">Ore inregistrate:</h>
                             <div class="viz_b"th:text="${timpProiect.ore}"/>

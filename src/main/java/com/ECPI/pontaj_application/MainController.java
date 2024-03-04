@@ -29,9 +29,10 @@ public class MainController {
     private TimpProiectService timpProiectService;
 
     @GetMapping("/dashboard")
-    public String dashboard(){
+    public String dashboard() {
         return "dashboard";
     }
+
     @GetMapping("/angajat_form")
     public String home(Model model) {
         model.addAttribute("angajat", new Angajat());
@@ -39,9 +40,10 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return ("home");
     }
+
     @PostMapping("/save_angajat")
     public String saveAngajat(Angajat angajat) {
         angajatService.saveAngajat(angajat);
@@ -56,8 +58,8 @@ public class MainController {
     }
 
     @GetMapping("/save_proiect_form")
-    public String proiectForm(Model model){
-        model.addAttribute("proiect",new Proiect());
+    public String proiectForm(Model model) {
+        model.addAttribute("proiect", new Proiect());
         return "proiect-form";
 
     }
@@ -88,16 +90,17 @@ public class MainController {
         model.addAttribute("query", searchItem);
         return "results-angajat";
     }
+
     @PostMapping("/searchLuna")
-    public String proiectSearchLuna(Model model, @RequestParam("searchItem") int searchItem){
+    public String proiectSearchLuna(Model model, @RequestParam("searchItem") int searchItem) {
         List<Proiect> searchResults = proiectService.findProiectByMonth(searchItem);
-        model.addAttribute("results",searchResults);
-        model.addAttribute("query",searchItem);
-        return"results-proiecte";
+        model.addAttribute("results", searchResults);
+        model.addAttribute("query", searchItem);
+        return "results-proiecte";
     }
 
     @PostMapping("/searchProiecte")
-    public String proiectSearch(Model model, @RequestParam("searchItem") String searchItem, LocalDate searchItem2,String searchItem3) {
+    public String proiectSearch(Model model, @RequestParam("searchItem") String searchItem, LocalDate searchItem2, String searchItem3) {
         List<Proiect> searchResults = proiectService.findProiect(searchItem, searchItem, searchItem2, searchItem3);
         model.addAttribute("results", searchResults);
         model.addAttribute("query", searchItem);
@@ -105,66 +108,69 @@ public class MainController {
     }
 
 
-
     @GetMapping("/angajati")
-    public String displayAngajati(Model model){
-        List<Angajat> angajati =angajatService.getAngajati();
-        model.addAttribute("angajati",angajati);
+    public String displayAngajati(Model model) {
+        List<Angajat> angajati = angajatService.getAngajati();
+        model.addAttribute("angajati", angajati);
         model.addAttribute("searchItem", new String());
 
-        return("angajati");
+        return ("angajati");
     }
 
     @GetMapping("/proiecte")
-    public String displayProiecte(Model model){
+    public String displayProiecte(Model model) {
         List<Proiect> proiecte = proiectService.getProiecte();
-        model.addAttribute("proiecte",proiecte);
+        model.addAttribute("proiecte", proiecte);
 
-        return("proiecte");
+        return ("proiecte");
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteAngajat(Model model,@PathVariable UUID id){
+    public String deleteAngajat(Model model, @PathVariable UUID id) {
         angajatService.deleteAngajat(id);
         return "redirect:/angajati";
     }
 
     @GetMapping("/deleteProiect/{id}")
-    public String deleteProiect(Model model,@PathVariable UUID id){
+    public String deleteProiect(Model model, @PathVariable UUID id) {
         proiectService.deleteProiect(id);
         return "redirect:/proiecte";
     }
+
     @GetMapping("/updateAngajatForm/{id}")
-    public String updateAngajatForm(@PathVariable UUID id, Model model){
-        model.addAttribute("angajat",angajatService.getAngajatById(id));
+    public String updateAngajatForm(@PathVariable UUID id, Model model) {
+        model.addAttribute("angajat", angajatService.getAngajatById(id));
         return "angajat-update-form";
     }
+
     @GetMapping("/updateProiectForm/{id}")
-    public String updateProiectForm(@PathVariable UUID id,Model model){
-        model.addAttribute("proiect",proiectService.getProiectById(id));
+    public String updateProiectForm(@PathVariable UUID id, Model model) {
+        model.addAttribute("proiect", proiectService.getProiectById(id));
         return "proiect-update-form";
     }
+
     @GetMapping("/vizualizare/{id}")
-    public String vizualizare(Model model,@PathVariable UUID id,@ModelAttribute("timpProiect2") TimpProiectDTO timpProiect){
+    public String vizualizare(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiect) {
         Angajat angajat = angajatService.getAngajatById(id);
         System.out.println(angajat.toString());
         model.addAttribute("angajat", angajat);
-        model.addAttribute("proiecte",proiectService.getProiecte());
+        model.addAttribute("proiecte", proiectService.getProiecte());
         model.addAttribute("utils", proiectService);
-        model.addAttribute("ore_sum",timpProiectService.calculateSumOfOreForAngajat(id));
-       return "vizualizare";
+        model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
+        return "vizualizare";
     }
 
     @GetMapping("/vizualizareProiect/{id}")
-    public String vizualizareProiect(Model model,@PathVariable UUID id,@ModelAttribute("timpProiect2") TimpProiectDTO timpProiect){
-        Proiect proiect= proiectService.getProiectById(id);
+    public String vizualizareProiect(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiect) {
+        Proiect proiect = proiectService.getProiectById(id);
         System.out.println(proiect.toString());
-        List<Angajat> angajati= angajatService.getAngajati();
+        List<Angajat> angajati = angajatService.getAngajati();
         model.addAttribute("angajati", angajati);
-        model.addAttribute("proiect",proiect);
+        model.addAttribute("proiect", proiect);
         model.addAttribute("utils", angajatService);
         return "vizualizareProiect";
     }
+
     @PostMapping("searchVizualizare/{id}")
     public String searchVizualizare(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiectDTO, int searchItem) {
         List<TimpProiect> searchResults = timpProiectService.findAllByMonthAndAngajatId(searchItem, id);
@@ -175,10 +181,24 @@ public class MainController {
         model.addAttribute("utils", proiectService);
         model.addAttribute("results", searchResults);
         model.addAttribute("query", searchItem);
-        model.addAttribute("ore_sum",timpProiectService.calculateSumOfOreForAngajat(id));
+        model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
         return "results-vizualizare";
     }
 
+    @GetMapping("/detaliProiect/{id}")
+    public String detaliProiect(Model model, @PathVariable UUID id){
+
+       Proiect proiect = proiectService.getProiectById(id);
+       model.addAttribute("proiect",proiect);
+        return"detali-proiect";
+}
+
+   @GetMapping("deleteTimpProiect/{id}")
+   public String deleteTimpProiect(Model model, @PathVariable Integer id){
+        timpProiectService.deleteTimpProiect(timpProiectService.getTimpProiectById(id));
+        return "vizualizareProiect";
+
+    }
 //    @GetMapping("/test")
 //    public String test(){
 //        Angajat angajat = angajatService.getAngajati().get(0);

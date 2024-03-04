@@ -98,7 +98,7 @@ overflow:auto;}
     color: #8D8D8D;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    margin-top: 16px;
+    margin-top: 0px;
 }
 
 
@@ -266,4 +266,9 @@ font-size:24px;}
 
 .no-spin {
     -moz-appearance: textfield;
+}
+html, body {
+    height: 100%;
+    background-color: #152733;
+    overflow: hidden;
 }

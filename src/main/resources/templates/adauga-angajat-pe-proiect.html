@@ -24,7 +24,7 @@
             <div>
               <select id="dropdown" name="dropdown" th:field="*{proiect_id}">
                 <option th:each="proiect : ${proiecte}" th:value="${proiect.id}"
-                        th:text="${proiect.nume}"></option>
+                        th:text="${proiect.nrComandaInt}"></option>
               </select>
             </div>
               <input th:field="*{ore}" type="number" step="any" placeholder="Enter floating-point number">

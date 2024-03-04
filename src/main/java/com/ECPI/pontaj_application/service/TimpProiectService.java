@@ -29,12 +29,18 @@ public class TimpProiectService {
 
         return sum;
     }
-
+    public TimpProiect getTimpProiectById(Integer id){
+       return  timpProiectRepository.getReferenceById(id);
+    }
     public List<TimpProiect> findAllByMonth(int month) {
         return timpProiectRepository.findAllByMonth(month);
     }
 
     public List<TimpProiect> findAllByMonthAndAngajatId(int month, UUID angajatId) {
         return timpProiectRepository.findAllByMonthAndAngajatId(month, angajatId);
+    }
+
+    public void deleteTimpProiect(TimpProiect timpProiect){
+        timpProiectRepository.delete(timpProiect);
     }
 }

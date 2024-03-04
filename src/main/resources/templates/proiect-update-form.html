@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+  <meta charset="UTF-8">
+  <title>Forma Editare Proiect</title>
+  <link rel="stylesheet" th:href="@{/forms.css}" />
+</head>
+<body>
+<div class="form-body" layout:fragment="content" >
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Editare Proiect</h3>
+          <p>Editati datele necesare</p>
+          <form class="requires-validation" id="myForm" action="#" th:action="@{/save_proiect}" th:object="${proiect}" method="post" style="margin-right: 40px;">
+            <div>
+              <input class="form-control" type="hidden"  id="id" placeholder="Id" th:field="*{id}">
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="date"  id="data" placeholder="YY-MM" th:field="*{data}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="nume" placeholder="Nume" th:field="*{nume}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="client" placeholder="Client" th:field="*{client}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text"  id="nrComanda" placeholder="Nr. De Comanda" th:field="*{nrComanda}" required>
+            </div>
+            <div class="form-button mt-3" >
+              <button id="submit" type="submit" class="button"style="margin-left: 50px;">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

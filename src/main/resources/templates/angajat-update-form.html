@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}" >
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" th:href="@{/forms.css}" />
+  <title>Editare Angajat</title>
+</head>
+<body>
+<div class="form-body" layout:fragment="content"  >
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Editare Angajat</h3>
+          <p>Editati datele necesare</p>
+          <form class="requires-validation" id="myForm" action="#" th:action="@{/save_angajat}" th:object="${angajat}" method="post" style="margin-right: 40px;">
+            <div>
+              <input class="form-control" type="hidden" name="name" id="id" placeholder="Id" th:field="*{id}">
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="name" id="nume" placeholder="Nume" th:field="*{nume}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="email" placeholder="Prenume" th:field="*{prenume}" required>
+            </div>
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="password" placeholder="Post" id="rol" th:field="*{rol}" required />
+            </div>
+            <div class="form-button mt-3" >
+              <button id="submit" type="submit" class="button"style="margin-left: 50px;">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+<script>
+    document.getElementById('submit').addEventListener('click', function() {
+        var form = document.querySelector('form.requires-validation');
+        var inputs = form.querySelectorAll('input');
+        var isValid = true;
+        inputs.forEach(function(input) {
+            if (input.value.trim() === '') {
+                isValid = false;
+            }
+        });
+        if (isValid) {
+            form.submit();
+        } else {
+            alert('Completati toate spatiile libere');
+        }
+    });
+</script>

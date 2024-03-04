@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <link rel="stylesheet" th:href="@{/list.css}"/>
+  <script src="https://kit.fontawesome.com/d7ca018e94.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="scroll">
+    <div class="row" layout:fragment="content">
+      <div class="col-md-12" id="listaMare" style="border-radius: 5px;
+    background: white;
+    border: 6px;
+    text-align: center;
+    width: 25%;
+    min-width:350px;
+    margin-left:50px;">
+        <form th:action="@{/search}" method="post">
+          <input type="text" name="searchItem" placeholder="..." th:value="${searchItem}">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    <div class="form-holder2" th:each="angajat: ${results}">
+      <div class="form-content" id="listaMare">
+        <div class="form-items" id="lista">
+          <div>
+            <a th:href="@{|/updateAngajatForm/${angajat.id}|}" style='font-size:24px; padding-bottom:10px;' class='fas'>&#xf044;</a>
+            <a th:href="@{|/delete/${angajat.id}|}" class='fas'>&#xf0c4;</a>
+          </div>
+          <div class="col-md-12" id="rand">
+            <span th:text="${angajat.nume}"></span>
+            <span th:text="${angajat.prenume}"></span>
+            <span th:text="${angajat.rol}"></span>
+          </div>
+          <div class="form-button mt-3">
+            <a  th:href="@{|/vizualizare/${angajat.id}|}">
+              <button class="button" >Adauga ore</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

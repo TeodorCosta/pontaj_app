@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}">
+<head>
+  <meta charset="UTF-8">
+  <title>Angajati</title>
+  <link rel="stylesheet" th:href="@{/list.css}"/>
+  <script src="https://kit.fontawesome.com/d7ca018e94.js" crossorigin="anonymous"></script>
+
+</head>
+
+</header>
+<body>
+<div class="row" layout:fragment="content">
+
+  <div class="scroll">
+    <div class="col-md-12" id="listaMare" style="border-radius: 5px;
+    background: white;
+    border: 6px;
+    text-align: center;
+    width: 25%;
+    min-width:350px;
+    margin-left:50px;">
+      <h1 th:text="${angajat.fullName}"></h1>
+      <form th:action="@{|/searchVizualizare/${angajat.id}|}" method="post">
+        <select name="searchItem" class="no-spin">
+          <option value="1" th:selected="${searchItem == 1}">January</option>
+          <option value="2" th:selected="${searchItem == 2}">February</option>
+          <option value="3" th:selected="${searchItem == 3}">March</option>
+          <option value="4" th:selected="${searchItem == 4}">April</option>
+          <option value="5" th:selected="${searchItem == 5}">May</option>
+          <option value="6" th:selected="${searchItem == 6}">June</option>
+          <option value="7" th:selected="${searchItem == 7}">July</option>
+          <option value="8" th:selected="${searchItem == 8}">August</option>
+          <option value="9" th:selected="${searchItem == 9}">September</option>
+          <option value="10" th:selected="${searchItem == 10}">October</option>
+          <option value="11" th:selected="${searchItem == 11}">November</option>
+          <option value="12" th:selected="${searchItem == 12}">December</option>
+        </select>
+        <button type="submit">Cautare dupa Luna</button>
+      </form>
+    </div>
+
+    <div th:each="timpProiect: ${results}">
+
+      <div class="form-holder2">
+
+        <div class="form-content" id="listaMare">
+          <div class="form-items" id="lista">
+
+            <div class="viz">
+              <div>
+                <a  style='font-size:24px; padding-bottom:10px;'
+                    class='fas'>&#xf044;</a>
+                <a class='fas'>&#xf0c4;</a>
+              </div>
+              <h class="viz_b">Proiect:</h>
+              <div class="viz_b" th:text="${timpProiect.proiect.nume}"/>
+
+              <h class="viz_b">Ore inregistrate:</h>
+              <div class="viz_b"th:text="${timpProiect.ore}"/>
+              <h class="viz_b">
+                Client:</h>
+              <div class="viz_b"th:text="${timpProiect.proiect.client}"/>
+
+              <h class="viz_b">Data:</h>
+              <div class="viz_b" th:text = "${timpProiect.getYearAndMonthAndDay()} "></div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-12" id="listaMare" style="border-radius: 5px;
+    background: white;
+    border: 6px;
+    text-align: center;
+    width: 25%;
+    min-width:350px;
+    margin-left:50px;"
+  >Total Ore:
+    <span th:if="${ore_sum != null}" th:text="${ore_sum}"></span>
+  </div>
+</div>
+
+</body>
+</html>

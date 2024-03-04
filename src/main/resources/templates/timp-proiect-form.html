@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add or Update TimpProiect</title>
+</head>
+<body>
+<h2>Add or Update TimpProiect</h2>
+<form action="#" th:action="@{/save}" th:object="${timpProiect}" method="post">
+  <input type="hidden" th:field="*{id}">
+
+  <label for="proiect">Proiect:</label>
+  <select th:field="*{proiect}" id="proiect">
+    <!-- Populate with Proiect options -->
+    <!-- Assuming you have a list of Proiect objects available in model as 'proiectList' -->
+    <option th:each="proj : ${proiectList}" th:value="${proj.id}" th:text="${proj.nume}"></option>
+  </select><br>
+
+  <label for="ore">Ore:</label>
+  <input type="number" step="0.01" th:field="*{ore}" id="ore"><br>
+
+  <label for="month">Month:</label>
+  <input type="month" th:field="*{data}" id="month"><br>
+
+  <label for="angajat">Angajat:</label>
+  <select th:field="*{angajat}" id="angajat">
+    <!-- Populate with Angajat options -->
+    <!-- Assuming you have a list of Angajat objects available in model as 'angajatList' -->
+    <option th:each="angajat : ${angajatList}" th:value="${angajat.id}" th:text="${angajat.nume + ' ' + angajat.prenume}"></option>
+  </select><br>
+
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>

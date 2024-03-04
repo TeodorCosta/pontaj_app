@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+  <meta charset="UTF-8">
+  <title>Forma Adaugare Proiect</title>
+  <link rel="stylesheet" th:href="@{/forms.css}" />
+</head>
+<body>
+<div class="form-body" layout:fragment="content" >
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Adauga Angajat pe Proiect</h3>
+          <form th:action="@{|/saveTimpProiect|}" th:object="${timpProiect2}" method="post">
+           <label for="dropdown" >Angajat</label>
+            <div>
+              <select id="dropdown" name="dropdown" th:field="*{angajat_id}">
+                <option th:each="angajat : ${angajati}" th:value="${angajat.id}"
+                        th:text="${angajat.fullName}"></option>
+              </select>
+            </div>
+            <label for="dropdown">Proiect:</label>
+            <div>
+              <select id="dropdown" name="dropdown" th:field="*{proiect_id}">
+                <option th:each="proiect : ${proiecte}" th:value="${proiect.id}"
+                        th:text="${proiect.nume}"></option>
+              </select>
+            </div>
+              <input th:field="*{ore}" type="number" step="any" placeholder="Enter floating-point number">
+              <br><br>
+              <input th:field="*{data}" type="date">
+            <input type="submit" value="Submit">
+          </form>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

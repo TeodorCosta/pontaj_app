@@ -43,5 +43,9 @@ public class TimpProiect {
         return String.valueOf(this.data.getYear()) + "-" + String.valueOf(this.data.getMonth()) + "-" + String.valueOf(this.data.getDayOfMonth());
     }
 
+    public Angajat getAngajat() {
+        return angajat;
+    }
+
 }
 

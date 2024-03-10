@@ -1,5 +1,6 @@
 package com.ECPI.pontaj_application.service;
 
+import com.ECPI.pontaj_application.entity.Angajat;
 import com.ECPI.pontaj_application.entity.TimpProiect;
 import com.ECPI.pontaj_application.repository.TimpProiectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,15 @@ public class TimpProiectService {
 
         return sum;
     }
+    public Angajat getAngajatByTimpProiectId(Integer timpProiectId) {
+        TimpProiect timpProiect = timpProiectRepository.findById(timpProiectId).orElse(null);
+        if (timpProiect != null) {
+            return timpProiect.getAngajat();
+        }
+        return null; // Or handle the case where timpProiect is not found
+    }
+
+
     public TimpProiect getTimpProiectById(Integer id){
        return  timpProiectRepository.getReferenceById(id);
     }

@@ -193,12 +193,15 @@ public class MainController {
         return"detali-proiect";
 }
 
-   @GetMapping("deleteTimpProiect/{id}")
-   public String deleteTimpProiect(Model model, @PathVariable Integer id){
+    @GetMapping("deleteTimpProiect/{id}")
+    public String deleteTimpProiect(Model model, @PathVariable Integer id, UUID id2){
+        Angajat angajat = timpProiectService.getAngajatByTimpProiectId(id);
         timpProiectService.deleteTimpProiect(timpProiectService.getTimpProiectById(id));
-        return "vizualizareProiect";
-
+        id2 = angajat.getId();
+        model.addAttribute("id2", id2);
+        return "redirect:/vizualizare/" + id2;
     }
+
 //    @GetMapping("/test")
 //    public String test(){
 //        Angajat angajat = angajatService.getAngajati().get(0);

@@ -9,6 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class TimpProiectDTO {
 
     private String proiect_id;

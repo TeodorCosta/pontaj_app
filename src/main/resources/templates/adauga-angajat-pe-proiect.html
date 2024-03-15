@@ -16,15 +16,25 @@
            <label for="dropdown" >Angajat</label>
             <div>
               <select id="dropdown" name="dropdown" th:field="*{angajat_id}">
-                <option th:each="angajat : ${angajati}" th:value="${angajat.id}"
-                        th:text="${angajat.fullName}"></option>
+                <option th:if="${currentAngajat}" th:each="angajat : ${angajati}" th:value="${angajat.id}"
+                        th:text="${angajat.fullName}"
+                        th:selected="${selectedAngajat != null && angajat.id eq selectedAngajat.id}">
+                </option>
+                  <option th:if="${!currentAngajat}" th:each="angajat : ${angajati}" th:value="${angajat.id}"
+                          th:text="${angajat.fullName}">
+                  </option>
               </select>
             </div>
             <label for="dropdown">Proiect:</label>
             <div>
               <select id="dropdown" name="dropdown" th:field="*{proiect_id}">
-                <option th:each="proiect : ${proiecte}" th:value="${proiect.id}"
-                        th:text="${proiect.nrComandaInt}"></option>
+                <option th:if="${currentProiect}" th:each="proiect : ${proiecte}" th:value="${proiect.id}"
+                        th:text="${proiect.nrComandaInt}"
+                        th:selected="${selectedProiect != null && proiect.id eq selectedProiect.id}">
+                </option>
+                  <option th:if="${!currentProiect}" th:each="proiect : ${proiecte}" th:value="${proiect.id}"
+                          th:text="${proiect.nrComandaInt}">
+                  </option>
               </select>
             </div>
               <input th:field="*{ore}" type="number" step="any" placeholder="Enter floating-point number">

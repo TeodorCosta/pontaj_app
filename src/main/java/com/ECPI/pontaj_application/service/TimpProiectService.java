@@ -30,12 +30,15 @@ public class TimpProiectService {
 
         return sum;
     }
+    public List<TimpProiect> getTimpProiecte(){
+        return timpProiectRepository.findAll();
+    }
     public Angajat getAngajatByTimpProiectId(Integer timpProiectId) {
         TimpProiect timpProiect = timpProiectRepository.findById(timpProiectId).orElse(null);
         if (timpProiect != null) {
             return timpProiect.getAngajat();
         }
-        return null; // Or handle the case where timpProiect is not found
+        return null;
     }
 
 

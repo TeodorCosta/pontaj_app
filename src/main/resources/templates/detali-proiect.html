@@ -14,20 +14,52 @@
 
 <body>
 <div layout:fragment="content">
-    <div>
-        <div th:text="${proiect.nrComandaInt}"></div>
-        <div th:text="${proiect.nrComandaClient}"></div>
-        <div th:text="${getYearAndMonthAndDayDataCODE}"></div>
-        <div th:text="${getYearAndMonthAndDayDataPlecare}"></div>
-        <div th:text="${getYearAndMonthAndDayDataLivrare}"></div>
-        <div th:text="${proiect.getYearAndMonthAndDayDataFactura}"></div>
-        <div th:text="${proiect.nrFactura}"></div>
-        <div th:text="${proiect.valoareFactura}"></div>
-        <div th:text="${proiect.valoareFacturata}"></div>
-        <div th:text="${proiect.greutate}"></div>
-        <div th:text="${proiect.adresaLivrare}"></div>
-        <div th:text="${proiect.transportator}"></div>
-    </div>
+    <section class="intro">
+        <div class="bg-image h-100">
+            <div class="mask d-flex align-items-center h-100" style="backgroud:#174664">
+                <h1 style="
+    position: absolute;
+    top: 3%;
+    left: 45%;
+    color:white;
+"
+                ><span th:text="${proiect.nrComandaInt}"></span></h1>
+                <div class="container" style="margin-top:5%;">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div>Nr Comanda Int: <span th:text="${proiect.nrComandaInt}"></span></div>
+                                            <div>Nr Comanda Client: <span th:text="${proiect.nrComandaClient}"></span></div>
+                                        </div>
+                                        <div class="col">
+                                            <div>Data CDE: <span th:text="${proiect.getYearAndMonthAndDayDataCODE}"></span></div>
+                                            <div>Data Livrare: <span th:text="${proiect.getYearAndMonthAndDayDataLivrare}"></span></div>
+                                        </div>
+                                        <div class="col">
+                                            <div>Nr Factura: <span th:text="${proiect.nrFactura}"></span></div>
+                                            <div>Data Factura: <span th:text="${proiect.getYearAndMonthAndDayDataFactura}"></span></div>
+                                            <div>Valoare Factura: <span th:text="${proiect.valoareFactura}"></span>€</div>
+                                            <div>Valoare Facturata: <span th:text="${proiect.valoareFacturata}"></span>€</div>
+                                        </div>
+                                        <div class="col">
+                                            <div>Greutate: <span th:text="${proiect.greutate}"></span>Kg</div>
+                                            <div>Adresa Livrare: <span th:text="${proiect.adresaLivrare}"></span></div>
+                                            <div>Transportator: <span th:text="${proiect.transportator}"></span></div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 </body>

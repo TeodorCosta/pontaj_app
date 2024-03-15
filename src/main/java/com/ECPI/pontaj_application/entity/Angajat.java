@@ -38,6 +38,27 @@ public class Angajat {
         return this.nume + " " + this.prenume;
     }
 
+    public float calculateHoursOnProiect(Proiect proiect) {
+        float totalHours = 0;
+
+        for (TimpProiect timpProiect : proiecte) {
+            if (timpProiect.getProiect().equals(proiect)) {
+                totalHours += timpProiect.getOre();
+            }
+        }
+
+        return totalHours;
+    }
+    public float calculateTotalHours() {
+        float totalHours = 0;
+
+        for (TimpProiect timpProiect : proiecte) {
+            totalHours += timpProiect.getOre();
+        }
+
+        return totalHours;
+    }
+
 
 
 }

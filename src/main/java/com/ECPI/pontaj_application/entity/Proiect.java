@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import java.time.format.DateTimeFormatter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,19 +36,19 @@ public class Proiect {
 
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCODE;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataLivrare;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataPlecare;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataFactura;
 
     private  String nrFactura;
@@ -55,18 +56,23 @@ public class Proiect {
 
 
 
-    public String getYearAndMonthAndDayDataFactura(){
-        return String.valueOf(this.dataFactura.getYear()) + "-" + String.valueOf(this.dataFactura.getMonth()) + "-" + String.valueOf(this.dataFactura.getDayOfMonth());
+
+
+    public String getYearAndMonthAndDayDataFactura() {
+        return this.dataFactura != null ? this.dataFactura.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
     }
 
-    public String getYearAndMonthAndDayDataPlecare(){
-        return String.valueOf(this.dataPlecare.getYear()) + "-" + String.valueOf(this.dataPlecare.getMonth()) + "-" + String.valueOf(this.dataPlecare.getDayOfMonth());
-    }
-    public String getYearAndMonthAndDayDataLivrare(){
-        return String.valueOf(this.dataLivrare.getYear()) + "-" + String.valueOf(this.dataLivrare.getMonth()) + "-" + String.valueOf(this.dataLivrare.getDayOfMonth());
+    public String getYearAndMonthAndDayDataPlecare() {
+        return this.dataPlecare != null ? this.dataPlecare.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
     }
 
-    public String getYearAndMonthAndDayDataCODE(){
-        return String.valueOf(this.dataCODE.getYear()) + "-" + String.valueOf(this.dataCODE.getMonth()) + "-" + String.valueOf(this.dataCODE.getDayOfMonth());
+    public String getYearAndMonthAndDayDataLivrare() {
+        return this.dataLivrare != null ? this.dataLivrare.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
     }
+
+    public String getYearAndMonthAndDayDataCODE() {
+        return this.dataCODE != null ? this.dataCODE.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
+    }
+
+
 }

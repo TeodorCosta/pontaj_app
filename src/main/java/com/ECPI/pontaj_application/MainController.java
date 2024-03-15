@@ -1,9 +1,11 @@
 package com.ECPI.pontaj_application;
 
+import com.ECPI.pontaj_application.dto.ProiectUpdateDTO;
 import com.ECPI.pontaj_application.dto.TimpProiectDTO;
 import com.ECPI.pontaj_application.entity.Angajat;
 import com.ECPI.pontaj_application.entity.Proiect;
 import com.ECPI.pontaj_application.entity.TimpProiect;
+import com.ECPI.pontaj_application.mapper.ProiectMapper;
 import com.ECPI.pontaj_application.repository.AngajatRepository;
 import com.ECPI.pontaj_application.service.AngajatService;
 import com.ECPI.pontaj_application.service.ProiectService;
@@ -27,6 +29,9 @@ public class MainController {
 
     @Autowired
     private TimpProiectService timpProiectService;
+
+    @Autowired
+    private ProiectMapper proiectMapper;
 
     @GetMapping("/dashboard")
     public String dashboard() {
@@ -55,6 +60,12 @@ public class MainController {
     public String saveProiect(Proiect proiect) {
         proiectService.saveProiect(proiect);
         return ("redirect:/proiecte");
+    }
+    @PostMapping("update_proiect")
+    public  String updateProiect(ProiectUpdateDTO proiectUpdateDTO){
+        Proiect proiect =proiectMapper.maptoProiect(proiectUpdateDTO);
+        proiectService.saveProiect(proiect);
+        return("redirect:/proiecte");
     }
 
     @GetMapping("/save_proiect_form")
@@ -145,7 +156,9 @@ public class MainController {
 
     @GetMapping("/updateProiectForm/{id}")
     public String updateProiectForm(@PathVariable UUID id, Model model) {
-        model.addAttribute("proiect", proiectService.getProiectById(id));
+        Proiect proiect =proiectService.getProiectById(id);
+        ProiectUpdateDTO proiectUpdateDTO= proiectMapper.mapToProiectUpdateDTO(proiect);
+        model.addAttribute("proiect",proiectUpdateDTO );
         return "proiect-update-form";
     }
 
@@ -241,6 +254,7 @@ public class MainController {
         model.addAttribute("angajati", angajatService.getAngajati());
         model.addAttribute("proiecte",proiectService.getProiecte());
         model.addAttribute("utils", proiectService);
+        model.addAttribute("proiectCurent",new TimpProiectDTO());
 
         return "adauga-angajat-pe-proiect";
     }
@@ -282,5 +296,16 @@ public class MainController {
     @GetMapping("/about")
     public String about(){
         return "about";
+    }
+
+    @GetMapping("/raport")
+    public String displayAngajatiAndProiecte(Model model){
+        List <TimpProiect> timpProiect=timpProiectService.getTimpProiecte();
+        List <Angajat> angajati=angajatService.getAngajati();
+        List <Proiect> proiecte=proiectService.getProiecte();
+        model.addAttribute("angajati",angajati);
+        model.addAttribute("proiecte",proiecte);
+        model.addAttribute("timpProiect",timpProiect);
+        return "raport";
     }
 }

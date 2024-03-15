@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/d7ca018e94.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/tabel.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Angajati</title>
+<body>
+<div layout:fragment="content">
+    <section class="intro">
+        <div class="bg-image h-100">
+            <div class="mask d-flex align-items-center h-100" style="backgroud:#174664">
+                <h1 style="
+    position: absolute;
+    top: 3%;
+    left: 45%;
+    color:white;
+"
+                >Pontaj</h1>
+                <div class="container" style="margin-top:5%;">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body p-0">
+
+                                    <div class="table-responsive"  style=" height: 700px; z-index:-1; overflow-x:scroll; overflow-y:scroll;">
+
+                                        <table class="table table-striped mb-0" >
+                                            <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
+
+        <tr>
+            <th>Angajat</th>
+            <th>Post</th>
+            <th th:each="proiect : ${proiecte}"><span th:text="${proiect.nrComandaInt}"></span></th>
+            <th >Total:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="angajat : ${angajati}">
+            <td th:text="${angajat.fullName}"></td>
+            <td th:text="${angajat.rol}"></td>
+            <td th:each="proiect : ${proiecte}">
+                <span th:text="${angajat.calculateHoursOnProiect(proiect)}"></span>
+            </td>
+            <td th:text="${angajat.calculateTotalHours()}"></td>
+        </tr>
+        </tbody>
+    </table>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                        </div>
+                                    </div>
+
+    </section>
+
+</div>
+</body>
+</html>

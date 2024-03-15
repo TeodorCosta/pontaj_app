@@ -33,6 +33,28 @@ thead {
   top: 0;
   position: sticky;
 }
+ .sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+     background:#174664;
+   color: white;
+    }
+ .sticky-col-left {
+       position: sticky;
+       right: 0;
+       z-index: 1;
+     background:#174664;
+      color: white;
+     }
+ .sticky-col-middle{
+ position:sticky;
+ left:12%;
+ z=index:1;
+ background:#174664;
+ color:white;
+ }
+
 
 
 

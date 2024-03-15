@@ -53,10 +53,7 @@ public class Proiect {
 
     private  String nrFactura;
 
-
-
-
-
+    private boolean Livrat;
 
     public String getYearAndMonthAndDayDataFactura() {
         return this.dataFactura != null ? this.dataFactura.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";

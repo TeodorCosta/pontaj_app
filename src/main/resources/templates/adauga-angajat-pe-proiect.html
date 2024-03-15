@@ -3,41 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <title>Forma Adaugare Proiect</title>
-  <link rel="stylesheet" th:href="@{/forms.css}" />
+  <link rel="stylesheet" th:href="@{/form.css}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body>
-<div class="form-body" layout:fragment="content" >
-  <div class="row">
-    <div class="form-holder">
-      <div class="form-content">
-        <div class="form-items">
-          <h3>Adauga Angajat pe Proiect</h3>
-          <form th:action="@{|/saveTimpProiect|}" th:object="${timpProiect2}" method="post">
-           <label for="dropdown" >Angajat</label>
-            <div>
-              <select id="dropdown" name="dropdown" th:field="*{angajat_id}">
-                <option th:each="angajat : ${angajati}" th:value="${angajat.id}"
-                        th:text="${angajat.fullName}"></option>
-              </select>
-            </div>
-            <label for="dropdown">Proiect:</label>
-            <div>
-              <select id="dropdown" name="dropdown" th:field="*{proiect_id}">
-                <option th:each="proiect : ${proiecte}" th:value="${proiect.id}"
-                        th:text="${proiect.nrComandaInt}"></option>
-              </select>
-            </div>
-              <input th:field="*{ore}" type="number" step="any" placeholder="Enter floating-point number">
-              <br><br>
-              <input th:field="*{data}" type="date" required>
-            <input type="submit" value="Submit">
-          </form>
-          </form>
+<body style="overflow-y:scroll;background:#174664;" >
+<div class="container" layout:fragment="content" style="background:#174664;">
+  <div class=" text-center mt-5 ">
+
+    <h1 style=" color:white;" >Adaugare Proiect</h1>
+
+
+  </div>
+
+
+  <div class="row ">
+    <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+
+          <div class = "container">
+            <form class="requires-validation" id="myForm" action="#" th:action="@{/saveTimpProiect}" th:object="${timpProiect2}" method="post">
+
+
+
+              <div class="controls">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="angajat">Angajat</label>
+                      <select id="form_need" class="form-control" name="dropdown" th:field="*{angajat_id}">
+                        <option th:if="${currentAngajat}" th:each="angajat : ${angajati}" th:value="${angajat.id}"
+                                th:text="${angajat.fullName}"
+                                th:selected="${selectedAngajat != null && angajat.id eq selectedAngajat.id}">
+                        </option>
+                        <option th:if="${!currentAngajat}" th:each="angajat : ${angajati}" th:value="${angajat.id}"
+                                th:text="${angajat.fullName}">
+                        </option>
+                      </select>
+                      <label for="proiect">Proiect</label>
+                      <select id="form_need"  class="form-control" name="dropdown" th:field="*{proiect_id}">
+                        <option th:if="${currentProiect}" th:each="proiect : ${proiecte}" th:value="${proiect.id}"
+                                th:text="${proiect.nrComandaInt}"
+                                th:selected="${selectedProiect != null && proiect.id eq selectedProiect.id}">
+                        </option>
+                        <option th:if="${!currentProiect}" th:each="proiect : ${proiecte}" th:value="${proiect.id}"
+                                th:text="${proiect.nrComandaInt}">
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="ore">Ore</label>
+                      <input class="form-control" th:field="*{ore}" type="number" step="any" id="ore">
+                      <label for="data">Data</label>
+                      <input class="form-control" th:field="*{data}" type="date" placeholder="YY-MM"id="data">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <input type="submit" class="btn btn-info btn-send  pt-2 btn-block
+                            " value="Adauga Proiect" >
+
+                  </div>
+
+                </div>
+
+
+              </div>
+            </form>
+          </div>
         </div>
+
+
       </div>
+      <!-- /.8 -->
+
     </div>
+    <!-- /.row-->
+
   </div>
 </div>
+
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dateFields = document.querySelectorAll('input[type="date"]');
+        dateFields.forEach(function(field) {
+            var currentDate = new Date().toISOString().split('T')[0];
+            field.value = currentDate;
+        });
+
+        document.getElementById("myForm").addEventListener("submit", function() {
+            numberFields.forEach(function(field) {
+                if (field.value.trim() === '') {
+                    field.value = 0;
+                }
+            });
+        });
+    });
+</script>
 

@@ -25,7 +25,7 @@
     text-align:center;
     font-size:50px;
     "
-        >Angajati</h1>
+        >Angajati Inactivi</h1>
         <div class="container" style="margin-top:5%;">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -44,14 +44,14 @@
                         <th class="col-3">Actiuni</th>
                         <th class="col-3">
                           <div class="searchbar">
-                            <form th:action="@{/search}" method="post" >
+                            <form th:action="@{/searchInactiv}" method="post" >
                               <input type="text" name="searchItem" placeholder="..." th:value="${searchItem}" class="col-8">
                               <button type="submit" class="col-4">Search</button>
                             </form>
                             <th class="col">
                               <div>
                                 <a href="angajat_form" class="button" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-user-plus"></i></a>
-                                <a th:href="angajati-inactivi"style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-users-slash"></i></a>
+                                <a href="angajati"class="button"style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-users"></i></a>
                               </div>
                             </th>
                           </div>
@@ -65,15 +65,16 @@
                         <td class="col-3">
                           <div class="form-button">
                             <a th:href="@{|/vizualizare/${angajat.id}|}">
-                              <button class="button">Vizualizeaza Ore</button>
+                              <button class="btn btn-info btn-send  pt-2 btn-block">Vizualizeaza Ore</button>
                             </a>
                           </div>
                         </td>
                         <td class="col">
                           <div >
                             <a th:href="@{|/updateAngajatForm/${angajat.id}|}" style='font-size:24px; padding-bottom:10px;'
-                               class='fas'>&#xf044;</a>
-                            <a th:href="@{|/delete/${angajat.id}|}" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-trash-can"></i></a>
+                            ><i class="fa-solid fa-user-pen"></i></a>
+                            <a th:href="@{|/delete/${angajat.id}|}" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-user-large-slash"></i></a>
+                            <a th:href="@{|/activAngajat/${angajat.id}|}" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-person-walking-arrow-loop-left"></i></a>
                           </div>
                         </td>
                       </tr>

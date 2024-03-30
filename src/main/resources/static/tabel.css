@@ -49,11 +49,17 @@ thead {
      }
  .sticky-col-middle{
  position:sticky;
- left:12%;
+ left:9%;
  z=index:1;
  background:#174664;
  color:white;
  }
+
+@media print {
+    #divprintabil {
+        display: none;
+    }
+}
 
 
 

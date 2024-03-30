@@ -20,7 +20,6 @@ public class ProiectMapper {
                 .adresaLivrare(proiect.getAdresaLivrare())
                 .dataCODE(proiect.getYearAndMonthAndDayDataCODE())
                 .dataLivrare(proiect.getYearAndMonthAndDayDataLivrare())
-                .dataPlecare(proiect.getYearAndMonthAndDayDataPlecare())
                 .dataFactura(proiect.getYearAndMonthAndDayDataFactura())
                 .nrFactura(proiect.getNrFactura())
                 .build();
@@ -40,7 +39,6 @@ public class ProiectMapper {
                 .dataCODE(proiectUpdateDTO.stringToLocalDate(proiectUpdateDTO.getDataCODE()))
                 .dataLivrare(proiectUpdateDTO.stringToLocalDate(proiectUpdateDTO.getDataLivrare()))
                 .dataFactura(proiectUpdateDTO.stringToLocalDate(proiectUpdateDTO.getDataFactura()))
-                .dataPlecare(proiectUpdateDTO.stringToLocalDate(proiectUpdateDTO.getDataPlecare()))
                 .build();
     }
 }

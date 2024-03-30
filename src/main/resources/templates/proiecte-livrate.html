@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-body p-0">
 
-                  <div class="table-responsive"  style=" height: 700px; z-index:-1; overflow-x:hidden; overflow-y:scroll;">
+                  <div class="table-responsive"  style=" z-index:-1; overflow-x:hidden;">
 
                     <table class="table table-striped mb-0" >
 
@@ -98,7 +98,7 @@
                           <div >
                             <a th:href="|/updateProiectForm/${proiect.id}|" style='font-size:24px; padding-bottom:10px;'>
                               <i class="fa-solid fa-file-pen"></i></a>
-                            <a th:href="|/deleteProiect/${proiect.id}|" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-trash-can"></i></a>
+                            <a th:href="|/deleteProiect/${proiect.id}|" onclick="return confirmDeleteProiect()" style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-trash-can"></i></a>
                             <a th:href="|/delivreazaProiect/${proiect.id}|"style='font-size:24px; padding-bottom:10px;'><i class="fa-solid fa-truck-fast"></i></a>
                           </div>
                         </td>
@@ -117,3 +117,13 @@
 </div>
 </body>
 </html>
+
+<script>
+  function confirmDeleteProiect() {
+    if (confirm("Are you sure you want to delete this project?")) {
+      return true; // Proceed with the link action
+    } else {
+      return false; // Prevent the default link behavior
+    }
+  }
+</script>

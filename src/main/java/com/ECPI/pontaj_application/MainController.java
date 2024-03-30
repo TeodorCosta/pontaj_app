@@ -46,74 +46,11 @@ public class MainController {
     }
 
 
-    /*
-    @PostMapping("/search")
-    public String angajatSearch( Model model, @RequestParam("searchItem") String searchItem) {
-        List<Angajat> searchResults = angajatRepository.findByNume(searchItem);
-        System.out.println(searchItem);
-        model.addAttribute("results", searchResults);
-        model.addAttribute("query", searchItem);
-        return "results-angajat";
-    }
-    @PostMapping("/add_timeonproject/{id}")
-    public String addTimeProject(Model model, @PathVariable UUID id){
-}
-*/
-    /*
-    @GetMapping("/test")
-    public String test(){
-        Angajat angajat = angajatService.getAngajati().get(0);
-        TimpProiect timpProiect= TimpProiect.builder()
-                .ore(3)
-                .data(LocalDate.of(2023,12,2))
-                .proiect(proiectService.getProiecte().get(0))
-                .angajat(angajat)
-                .build();
-        timpProiectService.saveTimpProiect(timpProiect);
 
-        angajat.addToProiect(timpProiect);
-        return"angajati";
-    }
 
-    @PostMapping("/save/{angajat_id}/{proiect_id}")
-    public String saveProjectHoursForEmployee(@PathVariable UUID angajat_id,@PathVariable UUID proiect_id, @ModelAttribute("timpProiect") TimpProiect timpProiect){
-
-        Angajat angajat = angajatService.getAngajatById(angajat_id);
-        Proiect proiect = proiectService.getProiectById(proiect_id);
-        TimpProiect timpProiectToBeAdded = TimpProiect.builder()
-                .angajat(angajat)
-                .proiect(proiect)
-                .ore(timpProiect.getOre())
-                .data(timpProiect.getData())
-                .build();
-
-        timpProiectService.saveTimpProiect(timpProiectToBeAdded);
-        angajat.addToProiect(timpProiectToBeAdded);
-
-        return "redirect:vizualizare/" + angajat.getId() ;
-    }
-*/
-    /*
-    @PostMapping("/save/{angajat_id}")
-    public String saveProjectHoursForEmployee(@PathVariable UUID angajat_id, TimpProiectDTO timpProiect){
-
-        Angajat angajat = angajatService.getAngajatById(angajat_id);
-        TimpProiect timpProiectToBeAdded = TimpProiect.builder()
-                .angajat(angajat)
-                .proiect(proiectService.getProiectById(UUID.fromString(timpProiect.getProiect_id())))
-                .ore(timpProiect.getOre())
-                .data(timpProiect.getData())
-                .build();
-
-        timpProiectService.saveTimpProiect(timpProiectToBeAdded);
-        angajat.addToProiect(timpProiectToBeAdded);
-
-        return "redirect:vizualizare/" + angajat.getId() ;
-    }*/
-
-    @GetMapping("/about")
-    public String about() {
-        return "about";
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
     }
 
     @GetMapping("/raport")

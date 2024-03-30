@@ -28,8 +28,6 @@ public class Angajat {
     private List<TimpProiect> proiecte;
 
     private boolean activ;
-    //test
-
     public void addToProiect(TimpProiect timpProiect){
         this.proiecte.add(timpProiect);
     }

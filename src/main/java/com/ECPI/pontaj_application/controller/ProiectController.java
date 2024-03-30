@@ -85,6 +85,7 @@ public class ProiectController {
     public String updateProiectForm(@PathVariable UUID id, Model model) {
         Proiect proiect = proiectService.getProiectById(id);
         ProiectUpdateDTO proiectUpdateDTO = proiectMapper.mapToProiectUpdateDTO(proiect);
+        proiectUpdateDTO.setId(id);
         model.addAttribute("proiect", proiectUpdateDTO);
         return "proiect-update-form";
     }
@@ -92,6 +93,7 @@ public class ProiectController {
     @PostMapping("update_proiect")
     public String updateProiect(ProiectUpdateDTO proiectUpdateDTO) {
         Proiect proiect = proiectMapper.maptoProiect(proiectUpdateDTO);
+        proiect.setId(proiectUpdateDTO.getId());
         proiectService.saveProiect(proiect);
         return ("redirect:/proiecte");
     }

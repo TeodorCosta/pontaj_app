@@ -121,3 +121,18 @@ nav a::before {
 #lista{
 position:absolute;
 }
+
+.dropdown-container {
+    position: relative; /* Set container to relative position */
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    /* Other styling properties for your dropdown */
+}
+
+.primary-navigation li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}

@@ -46,13 +46,21 @@ public class TimpProiectController {
         return ("redirect:/timp_proiect_form");
     }
 
-    @GetMapping("deleteTimpProiect/{id}")
+    @GetMapping("deleteTimpProiectAngajat/{id}")
     public String deleteTimpProiect(Model model, @PathVariable Integer id, UUID id2){
         Angajat angajat = timpProiectService.getAngajatByTimpProiectId(id);
         timpProiectService.deleteTimpProiect(timpProiectService.getTimpProiectById(id));
         id2 = angajat.getId();
         model.addAttribute("id2", id2);
         return "redirect:/vizualizare/" + id2;
+    }
+    @GetMapping("deleteTimpProiectProiect/{id}")
+    public String deleteTimpProiectProiect(Model model, @PathVariable Integer id, UUID id2){
+        Proiect proiect = timpProiectService.getProiectByTimpProiectId(id);
+        timpProiectService.deleteTimpProiect(timpProiectService.getTimpProiectById(id));
+        id2 = proiect.getId();
+        model.addAttribute("id2", id2);
+        return "redirect:/vizualizareProiect/" + id2;
     }
 
     @GetMapping("/adauga-angajat-pe-proiect")

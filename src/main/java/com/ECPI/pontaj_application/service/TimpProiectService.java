@@ -1,12 +1,8 @@
 package com.ECPI.pontaj_application.service;
 
 import com.ECPI.pontaj_application.entity.Proiect;
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.ss.util.CellReference;
-import org.apache.poi.xssf.usermodel.XSSFDataValidationHelper;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.ECPI.pontaj_application.entity.Angajat;
 import com.ECPI.pontaj_application.entity.TimpProiect;
@@ -15,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import java.io.InputStream;
 import java.time.YearMonth;
 import java.time.LocalDate;
 import java.util.*;
@@ -29,7 +23,9 @@ public class TimpProiectService {
     TimpProiectRepository timpProiectRepository;
 
     public void saveTimpProiect(TimpProiect timpProiect){
+
           timpProiectRepository.save(timpProiect);
+
     }
 
     public float calculateSumOfOreForAngajat(UUID angajatId) {
@@ -51,6 +47,13 @@ public class TimpProiectService {
         TimpProiect timpProiect = timpProiectRepository.findById(timpProiectId).orElse(null);
         if (timpProiect != null) {
             return timpProiect.getAngajat();
+        }
+        return null;
+    }
+    public Proiect getProiectByTimpProiectId(Integer timpProiectId) {
+        TimpProiect timpProiect = timpProiectRepository.findById(timpProiectId).orElse(null);
+        if (timpProiect != null) {
+            return timpProiect.getProiect();
         }
         return null;
     }

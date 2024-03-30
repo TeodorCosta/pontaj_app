@@ -31,26 +31,26 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="dataCODE">Data CDE</label>
-                      <input class="form-control" type="text" id="dataCODE"  th:field="*{dataCODE}" th:value="*{dataCODE}"required>
+                      <input class="form-control" type="hidden"  id="id" placeholder="Id" th:field="*{id}">
+                      <label for="nrComandaInt">Nr Comanda Interna</label>
+                      <input class="form-control" type="text"  id="nrComandaInt" placeholder="Nr. De Comanda Int." th:field="*{nrComandaInt}" required>
+                      <label for="nrComandaClient">Nr Comanda Client</label>
+                      <input class="form-control" type="text"  id="nrComandaClient" placeholder="Nr. De Comanda Client" th:field="*{nrComandaClient}" required>
+                      <label for="Client">Client</label>
+                      <input class="form-control" type="text"  id="Client" placeholder="Client" th:field="*{client}" required>
 
 
-                      <label for="dataLivrare">Data Livrare</label>
-
-                      <input class="form-control" type="text" id="dataLivrare" th:field="*{dataLivrare}" th:value="*{dataLivrare}"required>
-                      <label for="dataPlecare">Data PLecare</label>
-                      <input class="form-control" type="text" id="dataPlecare" th:field="*{dataPlecare}"  th:value="*{dataPlecare}"required>
-                      <label for="dataFactura">Data Factura</label>
-                      <input class="form-control" type="text" id="dataFactura" th:field="*{dataFactura}" th:value="*{dataFactura}" required>
 
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="nrComandaInt">Nr Comanda Int</label>
-                      <input class="form-control" type="text"  id="nrComandaInt" placeholder="Nr. De Comanda Int." th:field="*{nrComandaInt}" required>
-                      <label for="nrComandaClient">Nr Comanda Client</label>
-                      <input class="form-control" type="text"  id="nrComandaClient" placeholder="Nr. De Comanda Client" th:field="*{nrComandaClient}" required>
+                      <label for="dataCODE">Data Comanda</label>
+                      <input class="form-control" type="text"  id="dataCODE"  th:field="*{dataCODE}" required>
+                      <label for="dataLivrare">Data Livrare</label>
+                      <input class="form-control" type="text"  id="dataLivrare"  th:field="*{dataLivrare}" required>
+                      <label for="dataFactura">Data Factura</label>
+                      <input class="form-control" type="text"  id="dataFactura"  th:field="*{dataFactura}" required>
                     </div>
                   </div>
                 </div>
@@ -68,12 +68,12 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
+                      <label for="nrFactura">Nr Factura</label>
+                      <input class="form-control" type="text"  id="nrFactura" placeholder="Nr de Factura" th:field="*{nrFactura}" required>
                       <label for="valoareFactura">Valoare Factura</label>
                       <input class="form-control" type="number"  id="valoareFactura" placeholder="Valoare Factura" th:field="*{valoareFactura}" required>
                       <label for="valoareFacturata">Valoare Facturata</label>
                       <input class="form-control" type="number"  id="valoareFacturata" placeholder="Valoare Facturata" th:field="*{valoareFacturata}" required>
-                      <label for="nrFactura">Nr Factura</label>
-                      <input class="form-control" type="text"  id="nrFactura" placeholder="Nr de Factura" th:field="*{nrFactura}" required>
                     </div>
                   </div>
                 </div>

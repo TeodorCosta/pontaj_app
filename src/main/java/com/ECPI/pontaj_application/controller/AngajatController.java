@@ -113,7 +113,9 @@ public class AngajatController {
         Angajat angajat = angajatService.getAngajatById(id);
         System.out.println(angajat.toString());
         model.addAttribute("angajat", angajat);
-        model.addAttribute("proiecte", proiectService.getProiecte());
+        model.addAttribute("proiecte", proiectService.getProiecte().stream()
+                .filter(proiect -> !proiect.isLivrat())// Assuming the getter method is isLivrat()
+                .collect(Collectors.toList()));
         model.addAttribute("utils", proiectService);
         model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
         return "vizualizare";

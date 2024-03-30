@@ -45,10 +45,6 @@ public class Proiect {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dataPlecare;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataFactura;
 
     private  String nrFactura;
@@ -59,16 +55,22 @@ public class Proiect {
         return this.dataFactura != null ? this.dataFactura.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
     }
 
-    public String getYearAndMonthAndDayDataPlecare() {
-        return this.dataPlecare != null ? this.dataPlecare.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
-    }
-
     public String getYearAndMonthAndDayDataLivrare() {
         return this.dataLivrare != null ? this.dataLivrare.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
     }
 
     public String getYearAndMonthAndDayDataCODE() {
         return this.dataCODE != null ? this.dataCODE.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : "";
+    }
+
+    public float getTotalHours() {
+        float totalHours = 0.0f;
+        if (angajati != null) {
+            for (TimpProiect timpProiect : angajati) {
+                totalHours += timpProiect.getOre();
+            }
+        }
+        return totalHours;
     }
 
 

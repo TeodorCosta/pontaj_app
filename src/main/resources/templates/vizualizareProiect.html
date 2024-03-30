@@ -12,48 +12,52 @@
   <title>Detali Proiect</title>
 </head>
 
-<body>
+<body style="overflow-y:scroll;">
 <div layout:fragment="content">
   <section class="intro">
     <div class="bg-image h-100">
-      <div class="mask d-flex align-items-center h-100" style="backgroud:#174664">
+      <div class="mask d-flex align-items-center h-100" style="backgroud:#174664" >
         <h1 style="
+
     position: absolute;
     top: 3%;
     color:white;
     width:100%;
     text-align:center;
     font-size:50px;
+    margin-bottom:30px;
     "
         ><span th:text="${proiect.nrComandaInt}"></span></h1>
-        <div class="container" style="margin-top:5%;">
+        <div class="container" style="margin-top:10%; ">
           <div class="row justify-content-center">
             <div class="col-12">
               <div class="card">
                 <div class="card-body p-0">
                   <div class="row">
                     <div class="col">
-                      <div>Nr Comanda Int: <span th:text="${proiect.nrComandaInt}"></span></div>
-                      <div>Nr Comanda Client: <span th:text="${proiect.nrComandaClient}"></span></div>
+                      <div><strong>Nr Comanda Int:</strong> <span th:text="${proiect.nrComandaInt}"></span></div>
+                      <div><strong>Nr Comanda Client:</strong> <span th:text="${proiect.nrComandaClient}"></span></div>
+                      <div><strong>Client:</strong> <span th:text="${proiect.Client}"></span></div>
                     </div>
                     <div class="col">
-                      <div>Data CDA: <span th:text="${proiect.getYearAndMonthAndDayDataCODE}"></span></div>
-                      <div>Data Livrare: <span th:text="${proiect.getYearAndMonthAndDayDataLivrare}"></span></div>
+                      <div><strong>Data Comanda:</strong> <span th:text="${proiect.getYearAndMonthAndDayDataCODE}"></span></div>
+                      <div><strong>Data Livrare:</strong> <span th:text="${proiect.getYearAndMonthAndDayDataLivrare}"></span></div>
                     </div>
                     <div class="col">
-                      <div>Nr Factura: <span th:text="${proiect.nrFactura}"></span></div>
-                      <div>Data Factura: <span th:text="${proiect.getYearAndMonthAndDayDataFactura}"></span></div>
-                      <div>Valoare Factura: <span th:text="${proiect.valoareFactura}"></span>€</div>
-                      <div>Valoare Facturata: <span th:text="${proiect.valoareFacturata}"></span>€</div>
+                      <div><strong>Nr Factura:</strong> <span th:text="${proiect.nrFactura}"></span></div>
+                      <div><strong>Data Factura:</strong> <span th:text="${proiect.getYearAndMonthAndDayDataFactura}"></span></div>
+                      <div><strong>Valoare Factura:</strong> <span th:text="${proiect.valoareFactura}"></span>€</div>
+                      <div><strong>Valoare Facturata:</strong> <span th:text="${proiect.valoareFacturata}"></span>€</div>
                     </div>
                     <div class="col">
-                      <div>Greutate: <span th:text="${proiect.greutate}"></span>Kg</div>
-                      <div>Adresa Livrare: <span th:text="${proiect.adresaLivrare}"></span></div>
-                      <div>Transportator: <span th:text="${proiect.transportator}"></span></div>
+                      <div><strong>Greutate:</strong> <span th:text="${proiect.greutate}"></span>Kg</div>
+                      <div><strong>Adresa Livrare:</strong> <span th:text="${proiect.adresaLivrare}"></span></div>
+                      <div><strong>Transportator:</strong> <span th:text="${proiect.transportator}"></span></div>
+                      <div><strong>Total Ore Lucrate:</strong> <span th:text="${proiect.getTotalHours}"></span></div>
                     </div>
                   </div>
 
-                  <div class="table-responsive"  style=" height: 700px; z-index:-1; overflow-x:hidden; overflow-y:scroll;">
+                  <div class="table-responsive"  style="  z-index:-1; overflow-x:hidden; overflow-y:hidden">
 
                     <table class="table table-striped mb-0" >
                       <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
@@ -66,10 +70,11 @@
                       </tr>
                       </thead>
                       <tr class="row" th:each="timpProiect: ${proiect.angajati}">
-                        <th class="col-3" th:text="${timpProiect.angajat.nume}"></th>
+                        <th class="col-3" th:text="${timpProiect.angajat.fullName}"></th>
                         <th class="col-2" th:text="${timpProiect.angajat.rol}"></th>
                         <th class="col-3" th:text="${timpProiect.ore}"></th>
                         <th class="col" th:text = "${timpProiect.data} "></th>
+                        <th class="col" ><a th:href="|/deleteTimpProiectProiect/${timpProiect.id}|"><i class="fa-solid fa-file-excel"></i></a></th>
                       </tr>
                     </table>
                   </div>

@@ -2,93 +2,80 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/dashboard}">
 <head>
-    <meta charset="UTF-8">
-    <title>Angajati</title>
-    <link rel="stylesheet" th:href="@{/list.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/d7ca018e94.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/tabel.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <title>Detali Proiect</title>
 </head>
 
-</header>
-<body>
-<div class="row" layout:fragment="content">
+<body style="overflow-y:scroll;">
+<div layout:fragment="content">
+    <section class="intro">
+        <div class="bg-image h-100">
+            <div class="mask d-flex align-items-center h-100" style="backgroud:#174664" >
+                <h1 style="
 
-    <div class="scroll">
-        <div class="col-md-12" id="listaMare" style="border-radius: 5px;
-    background: white;
-    border: 6px;
-    text-align: center;
-    width: 25%;
-    min-width:350px;
-    margin-left:50px;">
-            <h1 th:text="${angajat.fullName}"></h1>
-            <form th:action="@{|/searchVizualizare/${angajat.id}|}" method="post">
-                <select name="searchItem" class="no-spin">
-                    <option value="1" th:selected="${searchItem == 1}">January</option>
-                    <option value="2" th:selected="${searchItem == 2}">February</option>
-                    <option value="3" th:selected="${searchItem == 3}">March</option>
-                    <option value="4" th:selected="${searchItem == 4}">April</option>
-                    <option value="5" th:selected="${searchItem == 5}">May</option>
-                    <option value="6" th:selected="${searchItem == 6}">June</option>
-                    <option value="7" th:selected="${searchItem == 7}">July</option>
-                    <option value="8" th:selected="${searchItem == 8}">August</option>
-                    <option value="9" th:selected="${searchItem == 9}">September</option>
-                    <option value="10" th:selected="${searchItem == 10}">October</option>
-                    <option value="11" th:selected="${searchItem == 11}">November</option>
-                    <option value="12" th:selected="${searchItem == 12}">December</option>
-                </select>
-                <button type="submit">Cautare dupa Luna</button>
-            </form>
-        </div>
+    position: absolute;
+    top: 3%;
+    color:white;
+    width:100%;
+    text-align:center;
+    font-size:50px;
+    margin-bottom:30px;
+    "
+                ><span th:text="${angajat.fullName}"></span></h1>
+                <div class="container" style="margin-top:10%; ">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div><strong>Nume:</strong> <span th:text="${angajat.nume}"></span></div>
+                                        </div>
+                                        <div class="col">
+                                            <div><strong>Prenume: </strong> <span th:text="${angajat.prenume}"></span></div>
+                                        </div>
+                                        <div class="col">
+                                            <div><strong>Post: </strong> <span th:text="${angajat.rol}"></span></div>
+                                        </div>
+                                    </div>
 
-        <div th:each="timpProiect: ${angajat.proiecte}">
+                                    <div class="table-responsive"  style="  z-index:-1; overflow-x:hidden; overflow-y:hidden">
 
-            <div class="form-holder2">
+                                        <table class="table table-striped mb-0" >
+                                            <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
+                                            <tr class="row" >
+                                                <th class="col-3">Comanda Interna</th>
 
-                <div class="form-content" id="listaMare">
-                    <div class="form-items" id="lista">
+                                                <th class="col-2">Ore Inregistrate:</th>
+                                                <th class="col-3">Client</th>
+                                                <th class="col">Data</th>
+                                            </tr>
+                                            </thead>
+                                            <tr class="row" th:each="timpProiect: ${angajat.proiecte}">
+                                                <th class="col-3" th:text="${timpProiect.proiect.nrComandaInt}"></th>
+                                                <th class="col-2" th:text="${timpProiect.ore}"></th>
+                                                <th class="col-3" th:text="${timpProiect.proiect.client}"></th>
+                                                <th class="col" th:text = "${timpProiect.data}"></th>
+                                                <th class="col" ><a th:href="|/deleteTimpProiectAngajat/${timpProiect.id}|"><i class="fa-solid fa-file-excel"></i></a></th>
+                                            </tr>
+                                        </table>
+                                    </div>
 
-                        <div class="viz">
-                            <div>
-                                <a  style='font-size:24px; padding-bottom:10px;'
-                                   class='fas'>&#xf044;</a>
-                                <a th:href="|/deleteTimpProiect/${timpProiect.id}|"class='fas'>&#xf0c4;</a>
+
+                                </div>
                             </div>
-                            <h class="viz_b">Proiect:</h>
-                            <div class="viz_b" th:text="${timpProiect.proiect.nrComandaInt}"/>
-
-                            <h class="viz_b">Ore inregistrate:</h>
-                            <div class="viz_b"th:text="${timpProiect.ore}"/>
-                            <h class="viz_b">
-                            Client:</h>
-                            <div class="viz_b"th:text="${timpProiect.proiect.client}"/>
-
-                            <h class="viz_b">Data:</h>
-                            <div class="viz_b" th:text = "${timpProiect.getYearAndMonthAndDay()}"></div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-            <div>
-
-
-            </div>
-
         </div>
-</div>
-    <div class="col-md-12" id="listaMare" style="border-radius: 5px;
-    background: white;
-    border: 6px;
-    text-align: center;
-    width: 25%;
-    min-width:350px;
-    margin-left:50px;"
-    >Total Ore:
-<!--        <span th:if="${ore_sum != null}" th:text="${ore_sum}"></span>-->
-    </div>
+    </section>
 </div>
 
 </body>

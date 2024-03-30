@@ -40,8 +40,6 @@ public class ProiectUpdateDTO {
     private String dataLivrare;
 
 
-    private String dataPlecare;
-
 
     private String dataFactura;
 

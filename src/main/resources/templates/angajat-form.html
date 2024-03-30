@@ -31,6 +31,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
+                      <input class="form-control" type="hidden"  id="id" placeholder="Id" th:field="*{id}">
                       <label for="nume">Nume</label>
                       <input class="form-control" type="text" name="name" id="nume" placeholder="Nume" th:field="*{nume}" required>
                     </div>
@@ -48,7 +49,7 @@
                 >
                   <div class="form-group" >
                   <label for="rol">Post</label>
-                  <input class="form-control" type="text" name="rol" id="rol"placeholder="Prenume" th:field="*{rol}" required>
+                  <input class="form-control" type="text" name="rol" id="rol"placeholder="Post" th:field="*{rol}" required>
                   </div>
                   </div>
                   <div class="col-md-6">

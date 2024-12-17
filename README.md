@@ -1,4 +1,3 @@
-Here’s a sample README.md file for your "Pontaj App":
 
 markdown
 Copy code

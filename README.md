@@ -1,6 +1,4 @@
 
-markdown
-Copy code
 # Pontaj App  
 
 Pontaj App is a time tracking application built using the Spring Boot Framework, Thymeleaf, and Spring Security. It follows the Model-View-Controller (MVC) architecture to provide a robust and maintainable solution for managing employee work hours.  

@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -35,6 +34,14 @@ public class TimpProiect {
     @JoinColumn(name = "angajat_id")
     private Angajat angajat;
 
+    private boolean mascat;
+
+
+
+    private boolean weekend;
+
+    private boolean suplimentare;
+
     public String getYearAndMonth(){
         return String.valueOf(this.data.getYear()) + "-" + String.valueOf(this.data.getMonth());
     }
@@ -46,6 +53,10 @@ public class TimpProiect {
     public Angajat getAngajat() {
         return angajat;
     }
+
+
+
+
 
 }
 

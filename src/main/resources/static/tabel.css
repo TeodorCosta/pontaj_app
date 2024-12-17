@@ -41,6 +41,7 @@ thead {
    color: white;
     }
  .sticky-col-left {
+ vertical-align: middle;
        position: sticky;
        right: 0;
        z-index: 1;
@@ -60,6 +61,48 @@ thead {
         display: none;
     }
 }
+
+.total {
+  position: sticky;
+  left: 0;
+  background:#174664;
+  z-index: 1;
+}
+
+.total {
+  position: sticky;
+  right: 3%;
+  background:#174664;
+  z-index: 1;
+}
+.total2 {
+  position: sticky;
+  right: 6%;
+  background:#174664;
+  z-index: 1;
+}
+.total3 {
+  position: sticky;
+  right: 9%;
+  background:#174664;
+  z-index: 1;
+}
+.total4 {
+  position: sticky;
+  right: 12%;
+  background:#174664;
+  z-index: 1;
+}
+#invers{
+writing-mode: vertical-lr;
+}
+tfoot {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+}
+
 
 
 

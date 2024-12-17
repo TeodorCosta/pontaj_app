@@ -2,6 +2,7 @@ package com.ECPI.pontaj_application.controller;
 
 import com.ECPI.pontaj_application.dto.TimpProiectDTO;
 import com.ECPI.pontaj_application.entity.Angajat;
+import com.ECPI.pontaj_application.entity.Proiect;
 import com.ECPI.pontaj_application.entity.TimpProiect;
 import com.ECPI.pontaj_application.mapper.ProiectMapper;
 import com.ECPI.pontaj_application.service.AngajatService;
@@ -124,6 +125,19 @@ public class AngajatController {
     @PostMapping("searchVizualizare/{id}")
     public String searchVizualizare(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiectDTO, int searchItem) {
         List<TimpProiect> searchResults = timpProiectService.findAllByMonthAndAngajatId(searchItem, id);
+        Angajat angajat = angajatService.getAngajatById(id);
+        System.out.println(angajat.toString());
+        model.addAttribute("angajat", angajat);
+        model.addAttribute("proiecte", proiectService.getProiecte());
+        model.addAttribute("utils", proiectService);
+        model.addAttribute("results", searchResults);
+        model.addAttribute("query", searchItem);
+        model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
+        return "results-vizualizare";
+    }
+    @PostMapping("searchVizualizareProiect/{id}")
+    public String searchVizualizareProiect(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiectDTO, UUID searchItem) {
+        List<TimpProiect> searchResults = timpProiectService.findAllByProiectIdAndAngajatId(searchItem, id);
         Angajat angajat = angajatService.getAngajatById(id);
         System.out.println(angajat.toString());
         model.addAttribute("angajat", angajat);

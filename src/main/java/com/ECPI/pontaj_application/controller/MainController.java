@@ -1,4 +1,4 @@
-package com.ECPI.pontaj_application;
+package com.ECPI.pontaj_application.controller;
 
 
 import com.ECPI.pontaj_application.entity.Angajat;
@@ -42,7 +42,12 @@ public class MainController {
 
     @GetMapping("/home")
     public String home() {
-        return ("home");
+        return  ("home");
+    }
+
+    @GetMapping("/sign-up")
+    public String login(){
+        return("login");
     }
 
 

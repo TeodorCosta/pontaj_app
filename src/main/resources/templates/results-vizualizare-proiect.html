@@ -28,20 +28,16 @@
     margin-bottom:30px;
     "
         ><span th:text="${proiect.nrComandaInt}"></span>
-          <div th:switch="${true}">
-            <div th:case="${proiect.livrat}">
-              <strong>Proiectul este Livrat</strong>
-            </div>
-            <div th:case="${proiect.areAllDatesSame()}">
-              <strong>Datele Sunt cele Default</strong>
-            </div>
-            <div th:case="${not proiect.areAllDatesSame()}">
-              <strong>Zile pana la Livrare:</strong> <span th:text="${proiect.daysUntilDelivery}"></span>
-            </div>
+          <div th:if="${not proiect.areAllDatesSame()}">
+            <strong>Zile pana la Livrare:</strong> <span th:text="${proiect.daysUntilDelivery}"></span>
           </div>
-
+          <div th:if="${proiect.areAllDatesSame()}">
+            <strong>Datele Sunt cele Default</strong>
+          </div>
+          <div th:if="${proiect.livrat}">
+            <strong>Proiectul este Livrat</strong>
+          </div>
         </h1>
-
         <div class="container" style="margin-top:10%; max-width: 1500px;">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -78,23 +74,22 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <div class="col">
-                        <form class="requires-validation" th:action="@{|/searchVizualizareForProiect/${proiect.id}|}" method="post">
-                          <select class="form-control" name="searchItem">
-                            <option >Select</option>
-                            <option value="1" th:selected="${query == 1}">January</option>
-                            <option value="2" th:selected="${query == 2}">February</option>
-                            <option value="3" th:selected="${query == 3}">March</option>
-                            <option value="4" th:selected="${query == 4}">April</option>
-                            <option value="5" th:selected="${query == 5}">May</option>
-                            <option value="6" th:selected="${query == 6}">June</option>
-                            <option value="7" th:selected="${query == 7}">July</option>
-                            <option value="8" th:selected="${query == 8}">August</option>
-                            <option value="9" th:selected="${query == 9}">September</option>
-                            <option value="10" th:selected="${query == 10}">October</option>
-                            <option value="11" th:selected="${query == 11}">November</option>
-                            <option value="12" th:selected="${query == 12}">December</option>
-                          </select>
+                      <form class="requires-validation" th:action="@{|/searchVizualizareForProiect/${proiect.id}|}" method="post">
+                        <select class="form-control" name="searchItem">
+                          <option >Select</option>
+                          <option value="1" th:selected="${query == 1}">January</option>
+                          <option value="2" th:selected="${query == 2}">February</option>
+                          <option value="3" th:selected="${query == 3}">March</option>
+                          <option value="4" th:selected="${query == 4}">April</option>
+                          <option value="5" th:selected="${query == 5}">May</option>
+                          <option value="6" th:selected="${query == 6}">June</option>
+                          <option value="7" th:selected="${query == 7}">July</option>
+                          <option value="8" th:selected="${query == 8}">August</option>
+                          <option value="9" th:selected="${query == 9}">September</option>
+                          <option value="10" th:selected="${query == 10}">October</option>
+                          <option value="11" th:selected="${query == 11}">November</option>
+                          <option value="12" th:selected="${query == 12}">December</option>
+                        </select>
                         <button type="submit" class="btn btn-info btn-send  pt-2 btn-block
                             " value="Search">Search</button>
                       </form>
@@ -116,55 +111,55 @@
                   </div>
                 </div>
 
-                  <div class="table-responsive"  style="  z-index:1 ; overflow-x:hidden; overflow-y:hidden">
+                <div class="table-responsive"  style="  z-index:1 ; overflow-x:hidden; overflow-y:hidden">
 
-                    <table class="table table-striped mb-0" >
-                      <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
-                      <tr class="row" >
-                        <th class="col-2">Angajat</th>
+                  <table class="table table-striped mb-0" >
+                    <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
+                    <tr class="row" >
+                      <th class="col-2">Angajat</th>
 
-                        <th class="col">Post</th>
-                        <th class="col">Ore</th>
-                        <th class="col">Data</th>
-                        <th class="col" style="color:red;">Weekend</th>
-                        <th class="col" style="color:green;">Mascat</th>
-                        <th class="col" style="color:blue;">Suplimentare</th>
-                        <th class="col">Stergere</th>
-                      </tr>
-                      </thead>
-                      <tr class="row" th:each="timpProiect: ${proiect.angajati}">
-                        <th class="col-2" th:text="${timpProiect.angajat.fullName}"></th>
-                        <th class="col" th:text="${timpProiect.angajat.rol}"></th>
-                        <th class="col" th:text="${timpProiect.ore}"></th>
-                        <th class="col" th:text = "${timpProiect.data} "></th>
-                        <th class="col">
-                          <span th:if="${timpProiect.weekend}"><i class="fa-solid fa-check" style="color:red;"></i></span>
+                      <th class="col">Post</th>
+                      <th class="col">Ore</th>
+                      <th class="col">Data</th>
+                      <th class="col" style="color:red;">Weekend</th>
+                      <th class="col" style="color:green;">Mascat</th>
+                      <th class="col" style="color:blue;">Suplimentare</th>
+                      <th class="col">Stergere</th>
+                    </tr>
+                    </thead>
+                    <tr class="row" th:each="timpProiect: ${results}">
+                      <th class="col-2" th:text="${timpProiect.angajat.fullName}"></th>
+                      <th class="col" th:text="${timpProiect.angajat.rol}"></th>
+                      <th class="col" th:text="${timpProiect.ore}"></th>
+                      <th class="col" th:text = "${timpProiect.data} "></th>
+                      <th class="col">
+                        <span th:if="${timpProiect.weekend}"><i class="fa-solid fa-check" style="color:red;"></i></span>
 
-                        </th>
-                        <th class="col">
-                          <span th:if="${timpProiect.mascat}"><i class="fa-solid fa-check" style="color:green;"></i></span>
+                      </th>
+                      <th class="col">
+                        <span th:if="${timpProiect.mascat}"><i class="fa-solid fa-check" style="color:green;"></i></span>
 
-                        </th>
+                      </th>
 
-                        <th class="col">
-                          <span th:if="${timpProiect.suplimentare}"><i class="fa-solid fa-check" style="color:blue;"></i></span>
+                      <th class="col">
+                        <span th:if="${timpProiect.suplimentare}"><i class="fa-solid fa-check" style="color:blue;"></i></span>
 
-                        </th>
+                      </th>
 
-                        <th class="col" ><a th:href="|/deleteTimpProiectProiect/${timpProiect.id}|"><i class="fa-solid fa-file-excel"></i></a></th>
-                      </tr>
-                    </table>
-                  </div>
-
-
+                      <th class="col" ><a th:href="|/deleteTimpProiectProiect/${timpProiect.id}|"><i class="fa-solid fa-file-excel"></i></a></th>
+                    </tr>
+                  </table>
                 </div>
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+</div>
+</section>
 </div>
 
 </body>

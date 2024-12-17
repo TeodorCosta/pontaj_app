@@ -36,7 +36,6 @@
                         <div class="col-4">
                             <form class="requires-validation" th:action="@{/raport_search_month}" method="post">
                                 <select class="form-control" name="searchItem">
-                                    <option value="">Select Month...</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
                                     <option value="3">March</option>
@@ -64,6 +63,8 @@
                         <div class="col-4">
                             <a class="btn btn-info btn-send  pt-2 btn-block
                             "th:href="@{/exportToExcel}"> <i class="fa-solid fa-floppy-disk"></i></a>
+                            <a class="btn btn-info btn-send pt-2 btn-block" th:href="@{'/exportToExcelForMonth/' + ${Month}}"> <i class="fa-solid fa-floppy-disk"></i> Export Excel</a>
+
                         </div>
 
                     </div>
@@ -79,19 +80,37 @@
 
                                             <tr>
                                                 <th class=" sticky-col">Angajat</th>
-                                                <th class="sticky-col-middle">Post</th>
                                                 <th th:each="proiect : ${proiecte}"><span th:text="${proiect.nrComandaInt}"></span></th>
-                                                <th class="sticky-col-left">Total:</th>
+                                                <th class="sticky-col-left total4" style="color:red;"> H WE </th>
+                                                <th class="sticky-col-left total3" style="color:green;"> H M </th>
+                                                <th class="sticky-col-left total2" style="color:blue;"> H S </th>
+                                                <th class="sticky-col-left total"> H </th>
+                                                <th class="sticky-col-left"> EURO </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr th:each="angajat : ${angajati}">
                                                 <td class="sticky-col" th:text="${angajat.fullName}"></td>
-                                                <td class="sticky-col-middle" th:text="${angajat.rol}"></td>
                                                 <td th:each="proiect : ${proiecte}">
                                                     <span th:text="${angajat.calculateHoursOnProiectInMonth(proiect,Month)}"></span>
+                                                    <span th:if="${angajat.calculateHoursOnProiectInMonthForWeekend(proiect,Month) > 0}">
+    +<span th:text="${angajat.calculateHoursOnProiectInMonthForWeekend(proiect,Month)}" style="color:red;"></span>
+</span>
+                                                    <span th:if="${angajat.calculateHoursOnProiectInMonthForMascat(proiect,Month) > 0}">
+    +<span th:text="${angajat.calculateHoursOnProiectInMonthForMascat(proiect,Month)}" style="color:green;"></span>
+</span>
+                                                    <span th:if="${angajat.calculateHoursOnProiectInMonthForSuplimentare(proiect,Month) > 0}">
+    +<span th:text="${angajat.calculateHoursOnProiectInMonthForSuplimentare(proiect,Month)}" style="color:blue;"></span>
+</span>
+
                                                 </td>
-                                                <td class="sticky-col-left" th:text="${angajat.calculateTotalHoursInMonth(Month)}"></td>
+                                                <td class="sticky-col-left total4" th:text="${angajat.calculateTotalHoursInMonthForWeekend(Month)}" style="color:red;"></td>
+                                                <td class="sticky-col-left total3" th:text="${angajat.calculateTotalHoursInMonthForMascat(Month)}" style="color:green;"></td>
+                                                <td class="sticky-col-left total2" th:text="${angajat.calculateTotalHoursInMonthForSuplimentare(Month)}" style="color:blue;"></td>
+                                                <td class="sticky-col-left total" th:text="${angajat.calculateTotalHoursInMonth(Month)}"></td>
+                                                <td class="sticky-col-left" th:text="${angajat.calculateTarifInMonth(Month,angajat.tarif)}"></td>
+
+
                                             </tr>
                                             </tbody>
                                         </table>

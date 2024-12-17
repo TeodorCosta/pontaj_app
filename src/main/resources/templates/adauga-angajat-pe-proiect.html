@@ -63,22 +63,28 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
+                <div class="form-group">
+                  <label>Select options:</label>
 
-                    </div>
+                  <div>
+                    <input class="form-check-input" type="checkbox" th:field="*{weekend}" id="option-weekend" value="true">
+                    <label class="form-check-label" for="option-weekend" style="color:red;">Weekend</label>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                    </div>
+                  <div>
+                    <input class="form-check-input" type="checkbox" th:field="*{mascat}" id="option-mascat" value="true">
+                    <label class="form-check-label" for="option-mascat" style="color:green;">Mascat</label>
+                  </div>
+                  <div>
+                    <input class="form-check-input" type="checkbox" th:field="*{suplimentare}" id="option-suplimentare" value="true">
+                    <label class="form-check-label" for="option-suplimentare" style="color:blue;">Suplimentare</label>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-12">
 
                     <input type="submit" class="btn btn-info btn-send  pt-2 btn-block
-                            " value="Adauga Proiect" >
+                            " value="Adauga Ore" >
 
                   </div>
 
@@ -115,6 +121,17 @@
             numberFields.forEach(function(field) {
                 if (field.value.trim() === '') {
                     field.value = 0;
+                }
+            });
+        });
+    });
+
+     const checkboxes = document.querySelectorAll('.form-check-input');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            checkboxes.forEach(cb => {
+                if (cb !== this) {
+                    cb.checked = false;
                 }
             });
         });

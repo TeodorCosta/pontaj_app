@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -102,6 +103,9 @@ public class TimpProiectController {
                 .proiect(proiectService.getProiectById(UUID.fromString(timpProiect.getProiect_id())))
                 .ore(timpProiect.getOre())
                 .data(timpProiect.getData())
+                .mascat(timpProiect.isMascat())
+                .weekend(timpProiect.isWeekend())
+                .suplimentare(timpProiect.isSuplimentare())
                 .build();
 
         timpProiectService.saveTimpProiect(timpProiectToBeAdded);
@@ -117,10 +121,71 @@ public class TimpProiectController {
             byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcel();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
-            headers.setContentDispositionFormData("attachment", "Pontaj.xlsx");
+            headers.setContentDispositionFormData("attachment", "PontajActiv/Nelivrat.xlsx");
             return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @GetMapping("/exportToExcelTotal")
+    public ResponseEntity<byte[]> exportTimpProiectEntitiesToExcelTotal() {
+        try {
+            byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcelTotal();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            headers.setContentDispositionFormData("attachment", "PontajTotal.xlsx");
+            return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    @GetMapping("/exportToExcelLivrat")
+    public ResponseEntity<byte[]> exportTimpProiectEntitiesToExcelLivrat() {
+        try {
+            byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcelLivrat();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            headers.setContentDispositionFormData("attachment", "PontajLivrat.xlsx");
+            return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    @GetMapping("/exportToExcelMonths")
+    public ResponseEntity<byte[]> exportTimpProiectEntitiesToExcelMonths() {
+        try {
+            byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcelMonths();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            headers.setContentDispositionFormData("attachment", "PontajLuni.xlsx");
+            return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    @GetMapping("/exportToExcelForMonth/{month}")
+    public ResponseEntity<byte[]> exportTimpProiectEntitiesToExcelForMonth(@PathVariable Integer month) {
+        try {
+            byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcelForMonth(month );
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            headers.setContentDispositionFormData("attachment", "Pontaj_" + month + ".xlsx");
+            return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    @GetMapping("/exportToExcelForDate/{date}")
+    public ResponseEntity<byte[]> exportTimpProiectEntitiesToExcelForDate(@PathVariable LocalDate date) {
+        try {
+            byte[] excelBytes = timpProiectService.exportTimpProiectEntitiesToExcelForDate(date);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+            headers.setContentDispositionFormData("attachment", "Pontaj_" + date + ".xlsx");
+            return new ResponseEntity<>(excelBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }

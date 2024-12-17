@@ -14,27 +14,42 @@ h1 {
 h2 {
   font-size: 24px;
 }
+body {
+    padding-top: 50px; /* Change the value based on your navbar's height */
+}
 
 
 nav {
-  float: left;
-	position: relative;
-	top: 0;
-  left: 0;
-	background: transparent;
+  position: sticky; /* Fixed positioning keeps the navbar fixed relative to the viewport */
+  top: 0; /* Position it at the top of the viewport */
+  width: 100%; /* Make it span the entire width of the viewport */
+  background-color: crimson; /* Set the background color of the navbar */
+  z-index: 1000; /* Ensure it stays above other content */
 }
 
 nav ul {
-	text-align: center;
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  text-align: center; /* Center-align the navigation items */
 }
 
 nav ul li {
-	position: relative;
-  width: 70px;
-  cursor: pointer;
-	background: crimson;
-	text-transform: uppercase;
-	transition:all .4s ease-out;
+  display: inline-block; /* Display navigation items horizontally */
+  margin-right: 20px; /* Add spacing between navigation items */
+}
+
+nav ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: white; /* Set text color */
+  font-family: 'Montserrat', sans-serif; /* Set font family */
+  font-size: 18px; /* Set font size */
+  padding: 10px 20px; /* Add padding to navigation items */
+  transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+  color: lightgray; /* Change text color on hover */
 }
 
 nav ul li:after {
@@ -292,4 +307,11 @@ nav ul li div { position: relative; }
 	border-width: 0 16px 9px 16px;
 	border-color: transparent transparent white transparent;
 }
+.intro {
+    /* Adjust intro styles as needed */
+    /* Ensure that intro content doesn't get hidden behind the fixed navbar */
+    padding-top: 70px; /* Add extra padding to push content below the navbar */
+}
+
+
 

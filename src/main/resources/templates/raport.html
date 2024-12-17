@@ -24,7 +24,7 @@
     font-size:50px;
     "
                 >Pontaj</h1>
-                <div class="container" style="margin-top:5%; max-width:1500px;">
+                <div class="container" style="margin-top:5%; max-width:2500px;">
                     <div class="d-flex flex-row mb-3" id="divprintabil" style="
                          display:flex;
                          position: absolute;
@@ -36,7 +36,6 @@
                         <div class="col-4">
                         <form class="requires-validation" th:action="@{/raport_search_month}" method="post">
                             <select class="form-control" name="searchItem">
-                                <option value="">Select Month...</option>
                                 <option value="1">January</option>
                                 <option value="2">February</option>
                                 <option value="3">March</option>
@@ -61,39 +60,87 @@
                             " value="Search">Search</button>
                         </form>
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                         <a class="btn btn-info btn-send  pt-2 btn-block
-                            "th:href="@{/exportToExcel}"> <i class="fa-solid fa-floppy-disk"></i></a>
+                            "th:href="@{/exportToExcel}"> <i class="fa-solid fa-floppy-disk"></i>ACTIV/NELIVRAT</a>
+                            <a class="btn btn-info btn-send  pt-2 btn-block
+                            "th:href="@{/exportToExcelLivrat}"> <i class="fa-solid fa-floppy-disk"></i>Livrat</a>
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-info btn-send  pt-2 btn-block
+                            "th:href="@{/exportToExcelMonths}"> <i class="fa-solid fa-floppy-disk"></i>LUNI</a>
+                            <a class="btn btn-info btn-send  pt-2 btn-block
+                            "th:href="@{/exportToExcelTotal}"> <i class="fa-solid fa-floppy-disk"></i>TOTAL</a>
                         </div>
 
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" style="margin-top:10%;">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body p-0">
 
-                                    <div class="table-responsive"  style=" height: 700px; z-index:-1; overflow-x:scroll; overflow-y:scroll;">
+                                    <div class="table-responsive"  style=" z-index:-1;">
 
                                         <table class="table table-striped mb-0" >
                                             <thead  style="background-color: #174664  ; color: white;  z-index:2;" >
 
         <tr>
-            <th class=" sticky-col">Angajat</th>
-            <th class="sticky-col-middle">Post</th>
-            <th th:each="proiect : ${proiecte}"><span th:text="${proiect.nrComandaInt}"></span></th>
-            <th class="sticky-col-left">Total:</th>
+            <th class=" sticky-col" style="vertical-align:inherit;" >Angajat</th>
+            <th th:each="proiect : ${proiecte}"><span th:text="${proiect.nrComandaInt}" id="invers"</span></th>
+            <th class="sticky-col-left total3" style="color:red;" id="invers"> H WE </th>
+            <th class="sticky-col-left total2" style="color:green;" id="invers"> H M </th>
+            <th class="sticky-col-left total" style="color:blue;" id="invers"> H S </th>
+            <th class="sticky-col-left " id="invers"> H </th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="angajat : ${angajati}">
-            <td class="sticky-col" th:text="${angajat.fullName}"></td>
-            <td class="sticky-col-middle" th:text="${angajat.rol}"></td>
+            <td class="sticky-col" th:text="${angajat.fullName}" style="vertical-align:inherit;"></td>
             <td th:each="proiect : ${proiecte}">
                 <span th:text="${angajat.calculateHoursOnProiect(proiect)}"></span>
+                <br>
+                <span th:if="${angajat.calculateHoursOnProiectForWeekend(proiect) > 0}">
+    <span th:text="${angajat.calculateHoursOnProiectForWeekend(proiect)}" style="color:red;"></span>
+</span>
+                <br>
+                <span th:if="${angajat.calculateHoursOnProiectForMascat(proiect) > 0}">
+    +<span th:text="${angajat.calculateHoursOnProiectForMascat(proiect)}" style="color:green;"></span>
+</span>
+                <br>
+                <span th:if="${angajat.calculateHoursOnProiectForSuplimentare(proiect) > 0}">
+    +<span th:text="${angajat.calculateHoursOnProiectForSuplimentare(proiect)}" style="color:blue;"></span>
+</span>
+
+            </td>
+            <td class="sticky-col-left total3" >
+                <br>
+                <span th:text="${angajat.calculateTotalHoursForWeekend()}" style="color:red;"></span>
+            </td>
+            <td class="sticky-col-left total2">
+                <br>
+                <br>
+                <span th:text="${angajat.calculateTotalHoursForMascat()}" style="color:green;"></span>
+            </td>
+            <td class="sticky-col-left total" >
+                <br>
+                <br>
+                <br>
+                <span th:text="${angajat.calculateTotalHoursForSuplimentare()}" style="color:blue;"></span>
             </td>
             <td class="sticky-col-left" th:text="${angajat.calculateTotalHours()}"></td>
+
+
+
         </tr>
         </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <td class="sticky-col">Total Ore Pe Proiect</td>
+                                                <td th:each="proiect : ${proiecte}">
+                                                    <span th:text="${proiect.getTotalHours()}"></span>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
     </table>
                                     </div>
                                     </div>

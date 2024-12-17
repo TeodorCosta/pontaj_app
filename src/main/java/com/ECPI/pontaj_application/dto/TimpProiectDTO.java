@@ -18,4 +18,12 @@ public class TimpProiectDTO {
     private LocalDate data;
 
     private String angajat_id;
+
+    private boolean mascat;
+
+
+
+    private boolean weekend;
+
+    private boolean suplimentare;
 }

@@ -4,6 +4,7 @@ import com.ECPI.pontaj_application.dto.ProiectUpdateDTO;
 import com.ECPI.pontaj_application.dto.TimpProiectDTO;
 import com.ECPI.pontaj_application.entity.Angajat;
 import com.ECPI.pontaj_application.entity.Proiect;
+import com.ECPI.pontaj_application.entity.TimpProiect;
 import com.ECPI.pontaj_application.mapper.ProiectMapper;
 import com.ECPI.pontaj_application.service.AngajatService;
 import com.ECPI.pontaj_application.service.ProiectService;
@@ -152,6 +153,31 @@ public class ProiectController {
         model.addAttribute("proiect", proiect);
         model.addAttribute("utils", angajatService);
         return "vizualizareProiect";
+    }
+    @PostMapping("searchVizualizareForProiect/{id}")
+    public String searchVizualizareForProiect(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiectDTO, int searchItem) {
+        List<TimpProiect> searchResults = timpProiectService.findAllByMonthAndProiectId(searchItem, id);
+        Proiect proiect = proiectService.getProiectById(id);
+        model.addAttribute("angajati", angajatService.getAngajati());
+        model.addAttribute("proiect",proiect );
+        model.addAttribute("utils", proiectService);
+        model.addAttribute("results", searchResults);
+        model.addAttribute("query", searchItem);
+        model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
+        return "results-vizualizare-proiect";
+    }
+
+    @PostMapping("searchVizualizareAngajatForProiect/{id}")
+    public String searchVizualizareAngajatForProiect(Model model, @PathVariable UUID id, @ModelAttribute("timpProiect2") TimpProiectDTO timpProiectDTO, UUID searchItem) {
+        List<TimpProiect> searchResults = timpProiectService.findAllByAngajatIdAndProiectId(id,searchItem );
+        Proiect proiect =proiectService.getProiectById(id);
+        model.addAttribute("angajati", angajatService.getAngajati());
+        model.addAttribute("proiect", proiect);
+        model.addAttribute("utils", proiectService);
+        model.addAttribute("results", searchResults);
+        model.addAttribute("query", searchItem);
+        model.addAttribute("ore_sum", timpProiectService.calculateSumOfOreForAngajat(id));
+        return "results-vizualizare-proiect";
     }
 
     @GetMapping("/detaliProiect/{id}")
